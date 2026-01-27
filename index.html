@@ -686,7 +686,7 @@
     <div id="authScreen" class="auth-container">
         <div class="auth-box">
             <h2 class="auth-title" id="authTitle">
-                <i class="fas fa-store"></i> DealsBari.com রিসেলার প্যানেল
+                <i class="fas fa-store"></i> Deals Bari রিসেলার প্যানেল
             </h2>
             
             <div id="authFormContainer">
@@ -702,23 +702,29 @@
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-sign-in-alt"></i> DealsBari.com এ লগইন
+                        <i class="fas fa-sign-in-alt"></i> Deals Bari তে লগইন
                     </button>
                 </form>
             </div>
             
             <div class="auth-switch">
-                <span>DealsBari.com একাউন্ট নেই?</span><br>
+                <span>Deals Bari একাউন্ট নেই?</span><br>
                 <a href="https://www.dealsbari.com/register" target="_blank" class="auth-link">
-                    <i class="fas fa-external-link-alt"></i> DealsBari.com এ রেজিস্টার করুন
+                    <i class="fas fa-external-link-alt"></i> Deals Bari তে রেজিস্টার করুন
                 </a>
             </div>
             
+
+ <!-- 
+
             <div style="margin-top: 30px; padding: 15px; background: #FFF3E0; border-radius: 8px;">
                 <h4 style="color: #F39C12; margin-bottom: 10px;"><i class="fas fa-info-circle"></i> ডেমো অ্যাকাউন্ট</h4>
                 <p style="font-size: 0.9rem; margin-bottom: 5px;"><strong>ইমেইল:</strong> demo@dealsbari.com</p>
                 <p style="font-size: 0.9rem;"><strong>পাসওয়ার্ড:</strong> password123</p>
-            </div>
+            </div> 
+
+-->
+
         </div>
     </div>
 
@@ -729,14 +735,14 @@
             <div class="container header-content">
                 <div class="logo">
                     <i class="fas fa-store"></i>
-                    <span>DealsBari.com রিসেলার</span>
-                    <span class="dealsbari-badge">অফিসিয়াল পার্টনার</span>
+                    <span>Deals Bari রিসেলার</span>
+                    <span class="dealsbari-badge">পার্টনার</span>
                 </div>
                 
                 <div class="user-menu">
                     <button class="user-btn" id="userMenuBtn">
                         <i class="fas fa-user"></i>
-                        <span id="userName">মেহেদি হাসান</span>
+                        <span id="userName"></span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     
@@ -804,7 +810,7 @@
                         <div class="stat-card stat-1">
                             <div class="stat-info">
                                 <h3 id="totalSales">৳ 0</h3>
-                                <p>মোট বিক্রয় (DealsBari)</p>
+                                <p>মোট বিক্রয় (Deals Bari)</p>
                             </div>
                             <div class="stat-icon">
                                 <i class="fas fa-chart-line"></i>
@@ -845,7 +851,7 @@
                     <!-- Charts -->
                     <div class="charts-container">
                         <div class="chart-box">
-                            <h3 class="chart-title">DealsBari বিক্রয় পরিসংখ্যান</h3>
+                            <h3 class="chart-title">Deals Bari বিক্রয় পরিসংখ্যান</h3>
                             <canvas id="salesChart"></canvas>
                         </div>
                         
@@ -858,7 +864,7 @@
                     <!-- Recent Orders -->
                     <div class="table-container">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                            <h3>সাম্প্রতিক DealsBari অর্ডারসমূহ</h3>
+                            <h3>সাম্প্রতিক Deals Bari অর্ডারসমূহ</h3>
                             <button class="btn btn-primary btn-sm" onclick="showPage('orders')">
                                 <i class="fas fa-eye"></i> সব অর্ডার দেখুন
                             </button>
@@ -878,7 +884,7 @@
                                 <tr id="ordersLoading">
                                     <td colspan="6" style="text-align: center; padding: 40px;">
                                         <div class="loader"></div>
-                                        <p>DealsBari.com থেকে অর্ডার লোড হচ্ছে...</p>
+                                        <p>Deals Bari থেকে অর্ডার লোড হচ্ছে...</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -890,7 +896,7 @@
                 <div id="productsPage" class="page-section">
                     <div class="page-header">
                         <h1 class="page-title">
-                            <i class="fas fa-box"></i> DealsBari.com পণ্যসমূহ
+                            <i class="fas fa-box"></i> Deals Bari পণ্যসমূহ
                         </h1>
                         <div style="display: flex; gap: 10px;">
                             <button class="btn btn-success" onclick="loadDealsBariProducts()">
@@ -904,7 +910,7 @@
 
                     <div id="productsLoading" style="text-align: center; padding: 40px;">
                         <div class="loader"></div>
-                        <p>DealsBari.com থেকে পণ্য লোড হচ্ছে...</p>
+                        <p>Deals Bari থেকে পণ্য লোড হচ্ছে...</p>
                     </div>
 
                     <div class="product-grid" id="productsGrid" style="display: none;">
@@ -916,7 +922,7 @@
                 <div id="ordersPage" class="page-section">
                     <div class="page-header">
                         <h1 class="page-title">
-                            <i class="fas fa-shopping-cart"></i> DealsBari.com অর্ডারসমূহ
+                            <i class="fas fa-shopping-cart"></i> Deals Bari অর্ডারসমূহ
                         </h1>
                         <div style="display: flex; gap: 10px;">
                             <button class="btn btn-success" onclick="loadDealsBariOrders()">
@@ -947,7 +953,7 @@
                                 <tr id="ordersLoading2">
                                     <td colspan="9" style="text-align: center; padding: 40px;">
                                         <div class="loader"></div>
-                                        <p>DealsBari.com থেকে অর্ডার লোড হচ্ছে...</p>
+                                        <p>Deals Bari থেকে অর্ডার লোড হচ্ছে...</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -1022,7 +1028,7 @@
                             <i class="fas fa-user"></i> প্রোফাইল
                         </h1>
                         <button class="btn btn-success" onclick="syncProfileFromDealsBari()">
-                            <i class="fas fa-sync-alt"></i> DealsBari থেকে প্রোফাইল সিঙ্ক
+                            <i class="fas fa-sync-alt"></i> Deals Bari থেকে প্রোফাইল সিঙ্ক
                         </button>
                     </div>
 
@@ -1094,13 +1100,13 @@
                     <div class="form-container">
                         <div style="margin-bottom: 30px;">
                             <h3 style="color: var(--primary); margin-bottom: 15px;">
-                                <i class="fas fa-link"></i> DealsBari.com সংযোগ
+                                <i class="fas fa-link"></i> Deals Bari সংযোগ
                             </h3>
                             <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                                 <p style="margin-bottom: 10px;"><strong>সংযোগ স্ট্যাটাস:</strong> 
                                     <span id="connectionStatus" class="badge badge-success">সংযুক্ত</span>
                                 </p>
-                                <p><strong>DealsBari ইউজার:</strong> <span id="dealsbariUser">demo@dealsbari.com</span></p>
+                                <p><strong>Deals Bari ইউজার:</strong> <span id="dealsbariUser">demo@dealsbari.com</span></p>
                             </div>
                             
                             <button class="btn btn-primary" onclick="syncAllData()">
@@ -1150,12 +1156,12 @@
             <div class="modal-body">
                 <div id="orderFormLoading" style="text-align: center; padding: 20px;">
                     <div class="loader"></div>
-                    <p>DealsBari পণ্য লোড হচ্ছে...</p>
+                    <p>Deals Bari পণ্য লোড হচ্ছে...</p>
                 </div>
                 
                 <form id="newOrderForm" style="display: none;">
                     <div class="form-group">
-                        <label class="form-label">DealsBari পণ্য নির্বাচন করুন</label>
+                        <label class="form-label">Deals Bari পণ্য নির্বাচন করুন</label>
                         <select class="form-control" id="orderProduct" required>
                             <option value="">পণ্য নির্বাচন করুন...</option>
                         </select>
@@ -1197,7 +1203,7 @@
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-check"></i> DealsBari.com এ অর্ডার করুন
+                        <i class="fas fa-check"></i> Deals Bari এ অর্ডার করুন
                     </button>
                 </form>
             </div>
@@ -1235,7 +1241,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">বর্তমান ব্যালেন্স (DealsBari)</label>
+                        <label class="form-label">বর্তমান ব্যালেন্স (Deals Bari)</label>
                         <input type="text" class="form-control" id="currentBalance" readonly>
                     </div>
                     
@@ -1250,7 +1256,7 @@
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-paper-plane"></i> DealsBari.com এ রিকোয়েস্ট জমা দিন
+                        <i class="fas fa-paper-plane"></i> Deals Bari তে জমা দিন
                     </button>
                 </form>
             </div>
@@ -1266,7 +1272,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label class="form-label">DealsBari.com পণ্য লিঙ্ক</label>
+                    <label class="form-label">Deals Bari পণ্য লিঙ্ক</label>
                     <input type="text" class="form-control" id="shareLink" readonly>
                 </div>
                 
@@ -1292,13 +1298,13 @@
     <div class="modal" id="syncModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title">DealsBari.com ডেটা সিঙ্ক</h2>
+                <h2 class="modal-title">Deals Bari ডেটা সিঙ্ক</h2>
                 <button class="modal-close" onclick="closeModal('syncModal')">&times;</button>
             </div>
             <div class="modal-body">
                 <div id="syncProgress" style="text-align: center;">
                     <div class="loader"></div>
-                    <h4 id="syncStatus">DealsBari.com থেকে ডেটা লোড হচ্ছে...</h4>
+                    <h4 id="syncStatus">Deals Bari থেকে ডেটা লোড হচ্ছে...</h4>
                     <p id="syncDetails">অনুগ্রহপূর্বক অপেক্ষা করুন...</p>
                     <div style="background: #f0f0f0; border-radius: 10px; height: 10px; margin: 20px 0;">
                         <div id="syncProgressBar" style="background: var(--primary); height: 100%; width: 0%; border-radius: 10px; transition: width 0.5s;"></div>
@@ -1474,6 +1480,24 @@
             ]
         };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         // ==================== Utility Functions ====================
         function showToast(title, message, type = "success") {
             const toast = document.getElementById("toast");
@@ -1532,7 +1556,7 @@
 
         // ==================== DealsBari API Functions ====================
         async function fetchDealsBariProducts() {
-            showSyncProgress("পণ্য লোড হচ্ছে...", "DealsBari.com থেকে পণ্য তালিকা সংগ্রহ করা হচ্ছে", 20);
+            showSyncProgress("পণ্য লোড হচ্ছে...", "Deals Bari থেকে পণ্য তালিকা সংগ্রহ করা হচ্ছে", 20);
             
             // Simulate API call delay
             await new Promise(resolve => setTimeout(resolve, 1500));
@@ -1547,7 +1571,7 @@
         }
 
         async function fetchDealsBariOrders() {
-            showSyncProgress("অর্ডার লোড হচ্ছে...", "DealsBari.com থেকে আপনার অর্ডার সংগ্রহ করা হচ্ছে", 50);
+            showSyncProgress("অর্ডার লোড হচ্ছে...", "Deals Bari থেকে আপনার অর্ডার সংগ্রহ করা হচ্ছে", 50);
             
             await new Promise(resolve => setTimeout(resolve, 1200));
             
@@ -1555,7 +1579,7 @@
         }
 
         async function fetchDealsBariWithdrawals() {
-            showSyncProgress("উত্তোলন লোড হচ্ছে...", "DealsBari.com থেকে উত্তোলন ইতিহাস সংগ্রহ করা হচ্ছে", 70);
+            showSyncProgress("উত্তোলন লোড হচ্ছে...", "Deals Bari থেকে উত্তোলন ইতিহাস সংগ্রহ করা হচ্ছে", 70);
             
             await new Promise(resolve => setTimeout(resolve, 800));
             
@@ -1563,14 +1587,14 @@
         }
 
         async function fetchDealsBariProfile() {
-            showSyncProgress("প্রোফাইল লোড হচ্ছে...", "DealsBari.com থেকে আপনার প্রোফাইল তথ্য সংগ্রহ করা হচ্ছে", 90);
+            showSyncProgress("প্রোফাইল লোড হচ্ছে...", "Deals Bari থেকে আপনার প্রোফাইল তথ্য সংগ্রহ করা হচ্ছে", 90);
             
             await new Promise(resolve => setTimeout(resolve, 600));
             
             return {
-                name: "মেহেদি হাসান",
+                name: "বেলায়েত হোসেন",
                 email: currentUser.email,
-                phone: "০১৭১২৩৪৫৬৭৮",
+                phone: "01997657293",
                 resellerId: "RES-" + Math.floor(100000 + Math.random() * 900000),
                 referralCode: "DBREF" + Math.floor(10000 + Math.random() * 90000),
                 joinDate: "২০২৩-০১-১৫",
@@ -1581,7 +1605,7 @@
         }
 
         async function submitDealsBariOrder(orderData) {
-            showSyncProgress("অর্ডার সাবমিট হচ্ছে...", "DealsBari.com এ নতুন অর্ডার জমা দেওয়া হচ্ছে", 40);
+            showSyncProgress("অর্ডার সাবমিট হচ্ছে...", "Deals Bari তে নতুন অর্ডার জমা দেওয়া হচ্ছে", 40);
             
             await new Promise(resolve => setTimeout(resolve, 2000));
             
@@ -1606,7 +1630,7 @@
             return {
                 success: true,
                 withdrawalId: withdrawalId,
-                message: "উত্তোলন রিকোয়েস্ট DealsBari.com এ জমা হয়েছে"
+                message: "উত্তোলন রিকোয়েস্ট Deals Bari এ জমা হয়েছে"
             };
         }
 
@@ -2131,7 +2155,7 @@
             showModal("syncModal");
             
             try {
-                showSyncProgress("DealsBari.com সংযোগ হচ্ছে...", "আপনার একাউন্ট তথ্য যাচাই করা হচ্ছে", 10);
+                showSyncProgress("Deals Bari সংযোগ হচ্ছে...", "আপনার একাউন্ট তথ্য যাচাই করা হচ্ছে", 10);
                 
                 // Sync products
                 const productsData = await fetchDealsBariProducts();
@@ -2427,9 +2451,9 @@
         async function simulateDealsBariLogin(email) {
             // Create user object
             currentUser = {
-                name: "মেহেদি হাসান",
+                name: "বেলায়েত হোসেন",
                 email: email,
-                phone: "০১৭১২৩৪৫৬৭৮",
+                phone: "01997657293",
                 token: "db_token_" + Math.random().toString(36).substr(2),
                 resellerId: "RES-" + Math.floor(100000 + Math.random() * 900000),
                 referralCode: "DBREF" + Math.floor(10000 + Math.random() * 90000)
