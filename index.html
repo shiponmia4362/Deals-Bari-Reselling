@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DealsBari.com রিসেলার প্যানেল - আপনার কমিশন ব্যবসা</title>
+    <title>DealsBari.com রিসেলার প্যানেল - বেলায়েত হোসেন</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
-        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -18,7 +16,7 @@
         }
 
         :root {
-            --primary: #E74C3C; /* DealsBari Red */
+            --primary: #E74C3C;
             --primary-dark: #C0392B;
             --secondary: #2C3E50;
             --success: #27AE60;
@@ -28,8 +26,6 @@
             --dark: #2C3E50;
             --gray: #7F8C8D;
             --light-gray: #ECF0F1;
-            --sidebar-width: 250px;
-            --header-height: 60px;
         }
 
         body {
@@ -38,7 +34,6 @@
             min-height: 100vh;
         }
 
-        /* Container */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -46,7 +41,6 @@
             padding: 0 15px;
         }
 
-        /* Header Styles */
         .header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
@@ -143,13 +137,11 @@
             width: 20px;
         }
 
-        /* Main Content */
         .main-content {
             margin-top: 80px;
             padding: 20px 0 40px;
         }
 
-        /* Page Sections */
         .page-section {
             display: none;
             animation: fadeIn 0.5s;
@@ -164,7 +156,6 @@
             to { opacity: 1; }
         }
 
-        /* Page Header */
         .page-header {
             display: flex;
             justify-content: space-between;
@@ -186,7 +177,6 @@
             font-size: 1.5rem;
         }
 
-        /* Stats Cards */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -238,7 +228,6 @@
         .stat-3 { border-left-color: #F39C12; }
         .stat-4 { border-left-color: #3498DB; }
 
-        /* Charts Container */
         .charts-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -260,8 +249,184 @@
             text-align: center;
         }
 
-        /* Tables */
+        .order-report-container {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .order-report-title {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 20px;
+            margin: 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .order-report-title i {
+            margin-right: 10px;
+        }
+        
         .table-container {
+            overflow-x: auto;
+            padding: 0;
+        }
+        
+        .order-report-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+        
+        .order-report-table thead {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .order-report-table th {
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .order-report-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid #eaeaea;
+            color: #333;
+            font-size: 0.95rem;
+        }
+        
+        .order-report-table tbody tr:hover {
+            background-color: #f9f9f9;
+            transition: background-color 0.2s;
+        }
+        
+        .order-no {
+            font-weight: 600;
+            color: #3498db;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .order-no:hover {
+            color: #1a5276;
+            text-decoration: underline;
+        }
+        
+        .tracking-id {
+            font-family: 'Courier New', monospace;
+            background-color: #f8f9fa;
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: 1px dashed #bdc3c7;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+        
+        .tracking-id:hover {
+            background-color: #e3f2fd;
+            border-color: #3498db;
+        }
+        
+        .copy-btn {
+            background-color: #f1f8ff;
+            border: 1px solid #d1e3ff;
+            color: #0366d6;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+            margin-right: 5px;
+        }
+        
+        .copy-btn:hover {
+            background-color: #dbedff;
+            transform: translateY(-1px);
+        }
+        
+        .track-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        
+        .track-btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(255, 107, 107, 0.3);
+        }
+        
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .status-delivered {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-processing {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+        
+        .view-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        
+        .view-btn:hover {
+            background-color: #218838;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(40, 167, 69, 0.2);
+        }
+
+        .table-container-regular {
             background: white;
             border-radius: 12px;
             padding: 25px;
@@ -306,7 +471,6 @@
         .badge-info { background: #d1ecf1; color: #0c5460; }
         .badge-primary { background: #d1e7ff; color: #084298; }
 
-        /* Forms */
         .form-container {
             background: white;
             border-radius: 12px;
@@ -377,7 +541,6 @@
             width: 100%;
         }
 
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -440,7 +603,6 @@
             padding: 25px;
         }
 
-        /* Navigation Tabs */
         .nav-tabs {
             display: flex;
             background: white;
@@ -472,7 +634,6 @@
             background: var(--light);
         }
 
-        /* Product Grid */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -502,12 +663,6 @@
             color: white;
             font-size: 3rem;
             position: relative;
-        }
-
-        .product-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .product-tag {
@@ -562,7 +717,6 @@
             font-size: 0.9rem;
         }
 
-        /* Withdrawal Cards */
         .withdrawal-card {
             background: white;
             border-radius: 10px;
@@ -585,7 +739,6 @@
             font-size: 0.9rem;
         }
 
-        /* Login/Register Page */
         .auth-container {
             min-height: 100vh;
             display: flex;
@@ -622,7 +775,6 @@
             font-weight: 600;
         }
 
-        /* Loader */
         .loader {
             border: 4px solid #f3f3f3;
             border-top: 4px solid var(--primary);
@@ -638,20 +790,52 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Status Indicators */
-        .status-indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 5px;
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #2ecc71;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .copy-notification.show {
+            transform: translateX(0);
         }
 
-        .status-active { background: #27AE60; }
-        .status-inactive { background: #E74C3C; }
-        .status-pending { background: #F39C12; }
+        #toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #27AE60;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 2000;
+            display: none;
+            min-width: 300px;
+            max-width: 400px;
+        }
+        
+        #toast > div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #toast i {
+            font-size: 1.2rem;
+        }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .stats-grid {
                 grid-template-columns: 1fr;
@@ -678,11 +862,28 @@
                 align-items: flex-start;
                 gap: 15px;
             }
+            
+            .order-report-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .order-report-table th,
+            .order-report-table td {
+                padding: 12px 8px;
+                font-size: 0.85rem;
+            }
+            
+            .view-btn, .copy-btn, .track-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Login/Register Screen -->
+    <!-- Login Screen -->
     <div id="authScreen" class="auth-container">
         <div class="auth-box">
             <h2 class="auth-title" id="authTitle">
@@ -693,42 +894,31 @@
                 <form id="loginForm">
                     <div class="form-group">
                         <label class="form-label">ইমেইল ঠিকানা</label>
-                        <input type="email" class="form-control" id="loginEmail" placeholder="আপনার DealsBari.com ইমেইল" required>
+                        <input type="email" class="form-control" id="loginEmail" value="belayet@dealsbari.com" readonly>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label">পাসওয়ার্ড</label>
-                        <input type="password" class="form-control" id="loginPassword" placeholder="আপনার DealsBari.com পাসওয়ার্ড" required>
+                        <input type="password" class="form-control" id="loginPassword" value="belayet123" readonly>
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-sign-in-alt"></i> Deals Bari তে লগইন
+                        <i class="fas fa-sign-in-alt"></i> বেলায়েত হোসেন হিসাবে লগইন করুন
                     </button>
                 </form>
             </div>
             
             <div class="auth-switch">
-                <span>Deals Bari একাউন্ট নেই?</span><br>
-                <a href="https://www.dealsbari.com/register" target="_blank" class="auth-link">
-                    <i class="fas fa-external-link-alt"></i> Deals Bari তে রেজিস্টার করুন
-                </a>
+                <p style="margin-top: 20px; padding: 15px; background: #FFF3E0; border-radius: 8px; text-align: center;">
+                    <strong>ডেমো একাউন্ট:</strong><br>
+                    ইমেইল: belayet@dealsbari.com<br>
+                    পাসওয়ার্ড: belayet123
+                </p>
             </div>
-            
-
- <!-- 
-
-            <div style="margin-top: 30px; padding: 15px; background: #FFF3E0; border-radius: 8px;">
-                <h4 style="color: #F39C12; margin-bottom: 10px;"><i class="fas fa-info-circle"></i> ডেমো অ্যাকাউন্ট</h4>
-                <p style="font-size: 0.9rem; margin-bottom: 5px;"><strong>ইমেইল:</strong> demo@dealsbari.com</p>
-                <p style="font-size: 0.9rem;"><strong>পাসওয়ার্ড:</strong> password123</p>
-            </div> 
-
--->
-
         </div>
     </div>
 
-    <!-- Main Dashboard (Hidden by default) -->
+    <!-- Main Dashboard -->
     <div id="dashboard" style="display: none;">
         <!-- Header -->
         <header class="header">
@@ -736,13 +926,13 @@
                 <div class="logo">
                     <i class="fas fa-store"></i>
                     <span>Deals Bari রিসেলার</span>
-                    <span class="dealsbari-badge">পার্টনার</span>
+                    <span class="dealsbari-badge">বেলায়েত হোসেন</span>
                 </div>
                 
                 <div class="user-menu">
                     <button class="user-btn" id="userMenuBtn">
                         <i class="fas fa-user"></i>
-                        <span id="userName"></span>
+                        <span id="userName">বেলায়েত হোসেন</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     
@@ -753,7 +943,7 @@
                         <a href="#" onclick="showPage('settings')">
                             <i class="fas fa-cog"></i> সেটিংস
                         </a>
-                        <a href="#" onclick="syncDealsBariData()">
+                        <a href="#" onclick="showToast('সিঙ্ক শুরু', 'ডেটা সিঙ্ক শুরু হয়েছে...', 'info')">
                             <i class="fas fa-sync-alt"></i> ডেটা সিঙ্ক করুন
                         </a>
                         <a href="https://www.dealsbari.com" target="_blank">
@@ -796,9 +986,6 @@
                             <i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড ওভারভিউ
                         </h1>
                         <div style="display: flex; gap: 10px;">
-                            <button class="btn btn-success" onclick="syncDealsBariData()">
-                                <i class="fas fa-sync-alt"></i> DealsBari ডেটা সিঙ্ক
-                            </button>
                             <button class="btn btn-primary" onclick="refreshData()">
                                 <i class="fas fa-redo"></i> রিফ্রেশ
                             </button>
@@ -809,7 +996,7 @@
                     <div class="stats-grid">
                         <div class="stat-card stat-1">
                             <div class="stat-info">
-                                <h3 id="totalSales">৳ 0</h3>
+                                <h3 id="totalSales">৳ 740</h3>
                                 <p>মোট বিক্রয় (Deals Bari)</p>
                             </div>
                             <div class="stat-icon">
@@ -819,7 +1006,7 @@
                         
                         <div class="stat-card stat-2">
                             <div class="stat-info">
-                                <h3 id="totalCommission">৳ 0</h3>
+                                <h3 id="totalCommission">৳ 150</h3>
                                 <p>মোট কমিশন</p>
                             </div>
                             <div class="stat-icon">
@@ -829,7 +1016,7 @@
                         
                         <div class="stat-card stat-3">
                             <div class="stat-info">
-                                <h3 id="availableBalance">৳ 0</h3>
+                                <h3 id="availableBalance">৳ 150</h3>
                                 <p>উপলব্ধ ব্যালেন্স</p>
                             </div>
                             <div class="stat-icon">
@@ -839,12 +1026,42 @@
                         
                         <div class="stat-card stat-4">
                             <div class="stat-info">
-                                <h3 id="totalOrders">0</h3>
+                                <h3 id="totalOrders">1</h3>
                                 <p>মোট অর্ডার</p>
                             </div>
                             <div class="stat-icon">
                                 <i class="fas fa-shopping-bag"></i>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Report Table -->
+                    <div class="order-report-container">
+                        <h2 class="order-report-title">
+                            <span><i class="fas fa-file-alt"></i> অর্ডার রিপোর্ট</span>
+                            <span style="font-size: 0.9rem; font-weight: normal;" id="totalOrdersReport">মোট অর্ডার: 1</span>
+                        </h2>
+                        
+                        <div class="table-container">
+                            <table class="order-report-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>অর্ডার নম্বর</th>
+                                        <th>তারিখ</th>
+                                        <th>মোট</th>
+                                        <th>লাভ</th>
+                                        <th>কুরিয়ার</th>
+                                        <th>ট্র্যাকিং আইডি</th>
+                                        <th>অ্যাকশন</th>
+                                        <th>স্ট্যাটাস</th>
+                                        <th>বিস্তারিত</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentOrdersBody">
+                                    <!-- Orders will be loaded here -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -860,36 +1077,6 @@
                             <canvas id="commissionChart"></canvas>
                         </div>
                     </div>
-
-                    <!-- Recent Orders -->
-                    <div class="table-container">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                            <h3>সাম্প্রতিক Deals Bari অর্ডারসমূহ</h3>
-                            <button class="btn btn-primary btn-sm" onclick="showPage('orders')">
-                                <i class="fas fa-eye"></i> সব অর্ডার দেখুন
-                            </button>
-                        </div>
-                        <table id="recentOrdersTable">
-                            <thead>
-                                <tr>
-                                    <th>অর্ডার আইডি</th>
-                                    <th>পণ্য</th>
-                                    <th>ক্রেতা</th>
-                                    <th>পরিমাণ</th>
-                                    <th>স্ট্যাটাস</th>
-                                    <th>কমিশন</th>
-                                </tr>
-                            </thead>
-                            <tbody id="recentOrdersBody">
-                                <tr id="ordersLoading">
-                                    <td colspan="6" style="text-align: center; padding: 40px;">
-                                        <div class="loader"></div>
-                                        <p>Deals Bari থেকে অর্ডার লোড হচ্ছে...</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
 
                 <!-- Products Page -->
@@ -899,7 +1086,7 @@
                             <i class="fas fa-box"></i> Deals Bari পণ্যসমূহ
                         </h1>
                         <div style="display: flex; gap: 10px;">
-                            <button class="btn btn-success" onclick="loadDealsBariProducts()">
+                            <button class="btn btn-success" onclick="loadProducts()">
                                 <i class="fas fa-sync-alt"></i> পণ্য আপডেট করুন
                             </button>
                             <button class="btn btn-primary" onclick="shareAllProducts()">
@@ -914,7 +1101,7 @@
                     </div>
 
                     <div class="product-grid" id="productsGrid" style="display: none;">
-                        <!-- Products will be dynamically added here -->
+                        <!-- Products will be loaded here -->
                     </div>
                 </div>
 
@@ -925,7 +1112,7 @@
                             <i class="fas fa-shopping-cart"></i> Deals Bari অর্ডারসমূহ
                         </h1>
                         <div style="display: flex; gap: 10px;">
-                            <button class="btn btn-success" onclick="loadDealsBariOrders()">
+                            <button class="btn btn-success" onclick="loadOrders()">
                                 <i class="fas fa-sync-alt"></i> অর্ডার আপডেট করুন
                             </button>
                             <button class="btn btn-primary" onclick="showNewOrderModal()">
@@ -934,7 +1121,7 @@
                         </div>
                     </div>
 
-                    <div class="table-container">
+                    <div class="table-container-regular">
                         <table id="ordersTable">
                             <thead>
                                 <tr>
@@ -950,12 +1137,7 @@
                                 </tr>
                             </thead>
                             <tbody id="ordersBody">
-                                <tr id="ordersLoading2">
-                                    <td colspan="9" style="text-align: center; padding: 40px;">
-                                        <div class="loader"></div>
-                                        <p>Deals Bari থেকে অর্ডার লোড হচ্ছে...</p>
-                                    </td>
-                                </tr>
+                                <!-- Orders will be loaded here -->
                             </tbody>
                         </table>
                     </div>
@@ -968,7 +1150,7 @@
                             <i class="fas fa-money-bill-wave"></i> উত্তোলন সমূহ
                         </h1>
                         <div style="display: flex; gap: 10px;">
-                            <button class="btn btn-success" onclick="syncWithdrawals()">
+                            <button class="btn btn-success" onclick="loadWithdrawals()">
                                 <i class="fas fa-sync-alt"></i> উত্তোলন আপডেট
                             </button>
                             <button class="btn btn-primary" onclick="showWithdrawalModal()">
@@ -981,7 +1163,7 @@
                     <div class="stats-grid" style="margin-bottom: 30px;">
                         <div class="stat-card stat-1">
                             <div class="stat-info">
-                                <h3 id="withdrawableBalance">৳ 0</h3>
+                                <h3 id="withdrawableBalance">৳ 150</h3>
                                 <p>উত্তোলনযোগ্য ব্যালেন্স</p>
                             </div>
                             <div class="stat-icon">
@@ -1017,7 +1199,7 @@
                     </div>
                     
                     <div id="withdrawalsList" style="display: none;">
-                        <!-- Withdrawal cards will be dynamically added here -->
+                        <!-- Withdrawals will be loaded here -->
                     </div>
                 </div>
 
@@ -1027,42 +1209,42 @@
                         <h1 class="page-title">
                             <i class="fas fa-user"></i> প্রোফাইল
                         </h1>
-                        <button class="btn btn-success" onclick="syncProfileFromDealsBari()">
-                            <i class="fas fa-sync-alt"></i> Deals Bari থেকে প্রোফাইল সিঙ্ক
+                        <button class="btn btn-success" onclick="loadProfile()">
+                            <i class="fas fa-sync-alt"></i> প্রোফাইল রিফ্রেশ
                         </button>
                     </div>
 
                     <div class="form-container">
-                        <div id="profileLoading" style="text-align: center; padding: 20px;">
+                        <div id="profileLoading" style="display: none; text-align: center; padding: 20px;">
                             <div class="loader"></div>
                             <p>প্রোফাইল তথ্য লোড হচ্ছে...</p>
                         </div>
                         
-                        <form id="profileForm" style="display: none;">
+                        <form id="profileForm">
                             <div class="form-group">
                                 <label class="form-label">পুরো নাম</label>
-                                <input type="text" class="form-control" id="profileName" required>
+                                <input type="text" class="form-control" id="profileName" value="বেলায়েত হোসেন" required>
                             </div>
                             
                             <div class="form-group">
                                 <label class="form-label">ইমেইল (DealsBari)</label>
-                                <input type="email" class="form-control" id="profileEmail" readonly>
+                                <input type="email" class="form-control" id="profileEmail" value="belayet@dealsbari.com" readonly>
                             </div>
                             
                             <div class="form-group">
                                 <label class="form-label">ফোন নম্বর</label>
-                                <input type="tel" class="form-control" id="profilePhone" required>
+                                <input type="tel" class="form-control" id="profilePhone" value="01997657293" required>
                             </div>
                             
                             <div class="form-group">
                                 <label class="form-label">রিসেলার আইডি</label>
-                                <input type="text" class="form-control" id="resellerId" readonly>
+                                <input type="text" class="form-control" id="resellerId" value="RES-BH-2024" readonly>
                             </div>
                             
                             <div class="form-group">
                                 <label class="form-label">রেফারেল কোড</label>
                                 <div style="display: flex; gap: 10px;">
-                                    <input type="text" class="form-control" id="referralCode" readonly style="flex: 1;">
+                                    <input type="text" class="form-control" id="referralCode" value="BHO784" readonly style="flex: 1;">
                                     <button type="button" class="btn btn-primary" onclick="copyReferralCode()">
                                         <i class="fas fa-copy"></i> কপি
                                     </button>
@@ -1075,7 +1257,7 @@
                             <div class="form-group">
                                 <label class="form-label">রেফারেল লিঙ্ক</label>
                                 <div style="display: flex; gap: 10px;">
-                                    <input type="text" class="form-control" id="referralLink" readonly style="flex: 1;">
+                                    <input type="text" class="form-control" id="referralLink" value="https://www.dealsbari.com/register?ref=BHO784" readonly style="flex: 1;">
                                     <button type="button" class="btn btn-primary" onclick="copyReferralLink()">
                                         <i class="fas fa-copy"></i> কপি
                                     </button>
@@ -1104,12 +1286,14 @@
                             </h3>
                             <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                                 <p style="margin-bottom: 10px;"><strong>সংযোগ স্ট্যাটাস:</strong> 
-                                    <span id="connectionStatus" class="badge badge-success">সংযুক্ত</span>
+                                    <span id="connectionStatus" class="badge badge-success">সক্রিয়</span>
                                 </p>
-                                <p><strong>Deals Bari ইউজার:</strong> <span id="dealsbariUser">demo@dealsbari.com</span></p>
+                                <p><strong>Deals Bari ইউজার:</strong> <span id="dealsbariUser">belayet@dealsbari.com</span></p>
+                                <p><strong>রিসেলার নাম:</strong> <span id="resellerName">বেলায়েত হোসেন</span></p>
+                                <p><strong>একাউন্ট স্ট্যাটাস:</strong> <span class="badge badge-success">ভেরিফাইড</span></p>
                             </div>
                             
-                            <button class="btn btn-primary" onclick="syncAllData()">
+                            <button class="btn btn-primary" onclick="showToast('ডেটা সিঙ্ক', 'সব ডেটা সিঙ্ক করা হয়েছে', 'success')">
                                 <i class="fas fa-sync-alt"></i> সব ডেটা সিঙ্ক করুন
                             </button>
                         </div>
@@ -1121,17 +1305,17 @@
                             
                             <div class="form-group">
                                 <label class="form-label">বর্তমান পাসওয়ার্ড</label>
-                                <input type="password" class="form-control" id="currentPassword" required>
+                                <input type="password" class="form-control" id="currentPassword" placeholder="বর্তমান পাসওয়ার্ড" required>
                             </div>
                             
                             <div class="form-group">
                                 <label class="form-label">নতুন পাসওয়ার্ড</label>
-                                <input type="password" class="form-control" id="newPassword" required>
+                                <input type="password" class="form-control" id="newPassword" placeholder="নতুন পাসওয়ার্ড" required>
                             </div>
                             
                             <div class="form-group">
                                 <label class="form-label">নতুন পাসওয়ার্ড নিশ্চিত করুন</label>
-                                <input type="password" class="form-control" id="confirmPassword" required>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="পাসওয়ার্ড নিশ্চিত করুন" required>
                             </div>
                             
                             <button type="submit" class="btn btn-primary btn-block">
@@ -1145,8 +1329,6 @@
     </div>
 
     <!-- Modals -->
-    
-    <!-- New Order Modal -->
     <div class="modal" id="newOrderModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1154,63 +1336,18 @@
                 <button class="modal-close" onclick="closeModal('newOrderModal')">&times;</button>
             </div>
             <div class="modal-body">
-                <div id="orderFormLoading" style="text-align: center; padding: 20px;">
-                    <div class="loader"></div>
-                    <p>Deals Bari পণ্য লোড হচ্ছে...</p>
-                </div>
-                
-                <form id="newOrderForm" style="display: none;">
-                    <div class="form-group">
-                        <label class="form-label">Deals Bari পণ্য নির্বাচন করুন</label>
-                        <select class="form-control" id="orderProduct" required>
-                            <option value="">পণ্য নির্বাচন করুন...</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">ক্রেতার নাম</label>
-                        <input type="text" class="form-control" id="customerName" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">ক্রেতার ফোন নম্বর</label>
-                        <input type="tel" class="form-control" id="customerPhone" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">ক্রেতার ঠিকানা</label>
-                        <textarea class="form-control" id="customerAddress" rows="3" required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">পরিমাণ</label>
-                        <input type="number" class="form-control" id="orderQuantity" min="1" value="1" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">মোট মূল্য (DealsBari)</label>
-                        <input type="text" class="form-control" id="orderTotal" readonly>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">আপনার কমিশন</label>
-                        <input type="text" class="form-control" id="orderCommission" readonly>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">অর্ডার নোট</label>
-                        <textarea class="form-control" id="orderNotes" rows="2" placeholder="অতিরিক্ত তথ্য (যদি থাকে)"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-check"></i> Deals Bari এ অর্ডার করুন
+                <div style="text-align: center; padding: 40px;">
+                    <i class="fas fa-tools" style="font-size: 3rem; color: var(--warning); margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 15px;">ফিচারটি ডেভেলপমেন্ট চলছে</h3>
+                    <p>নতুন অর্ডার তৈরি করার ফিচারটি খুব শীঘ্রই আসছে!</p>
+                    <button class="btn btn-primary" onclick="closeModal('newOrderModal')" style="margin-top: 20px;">
+                        <i class="fas fa-times"></i> বন্ধ করুন
                     </button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- New Withdrawal Modal -->
     <div class="modal" id="withdrawalModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1218,52 +1355,18 @@
                 <button class="modal-close" onclick="closeModal('withdrawalModal')">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="withdrawalForm">
-                    <div class="form-group">
-                        <label class="form-label">পরিমাণ (৳)</label>
-                        <input type="number" class="form-control" id="withdrawalAmount" min="500" required>
-                        <small class="text-muted">ন্যূনতম উত্তোলনযোগ্য পরিমাণ: ৳ 500</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">পদ্ধতি নির্বাচন করুন</label>
-                        <select class="form-control" id="withdrawalMethod" required>
-                            <option value="bkash">bKash (DealsBari)</option>
-                            <option value="nagad">Nagad (DealsBari)</option>
-                            <option value="bank">ব্যাংক ট্রান্সফার</option>
-                            <option value="rocket">Rocket</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" id="accountLabel">bKash নম্বর</label>
-                        <input type="text" class="form-control" id="accountDetails" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">বর্তমান ব্যালেন্স (Deals Bari)</label>
-                        <input type="text" class="form-control" id="currentBalance" readonly>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">উত্তোলনযোগ্য ব্যালেন্স</label>
-                        <input type="text" class="form-control" id="availableForWithdrawal" readonly>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">উত্তোলন নোট</label>
-                        <textarea class="form-control" id="withdrawalNotes" rows="2" placeholder="অতিরিক্ত তথ্য (যদি থাকে)"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-paper-plane"></i> Deals Bari তে জমা দিন
+                <div style="text-align: center; padding: 40px;">
+                    <i class="fas fa-tools" style="font-size: 3rem; color: var(--warning); margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 15px;">ফিচারটি ডেভেলপমেন্ট চলছে</h3>
+                    <p>উত্তোলন রিকোয়েস্ট করার ফিচারটি খুব শীঘ্রই আসছে!</p>
+                    <button class="btn btn-primary" onclick="closeModal('withdrawalModal')" style="margin-top: 20px;">
+                        <i class="fas fa-times"></i> বন্ধ করুন
                     </button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Product Share Modal -->
     <div class="modal" id="shareModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1271,44 +1374,13 @@
                 <button class="modal-close" onclick="closeModal('shareModal')">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-label">Deals Bari পণ্য লিঙ্ক</label>
-                    <input type="text" class="form-control" id="shareLink" readonly>
-                </div>
-                
-                <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
-                    <button class="btn btn-primary" style="flex: 1; min-width: 120px;" onclick="copyShareLink()">
-                        <i class="fas fa-copy"></i> লিঙ্ক কপি করুন
+                <div style="text-align: center; padding: 40px;">
+                    <i class="fas fa-tools" style="font-size: 3rem; color: var(--warning); margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 15px;">ফিচারটি ডেভেলপমেন্ট চলছে</h3>
+                    <p>পণ্য শেয়ার করার ফিচারটি খুব শীঘ্রই আসছে!</p>
+                    <button class="btn btn-primary" onclick="closeModal('shareModal')" style="margin-top: 20px;">
+                        <i class="fas fa-times"></i> বন্ধ করুন
                     </button>
-                    <button class="btn btn-success" style="flex: 1; min-width: 120px;" onclick="shareOnFacebook()">
-                        <i class="fab fa-facebook"></i> Facebook
-                    </button>
-                    <button class="btn btn-info" style="flex: 1; min-width: 120px;" onclick="shareOnWhatsApp()">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </button>
-                    <button class="btn btn-warning" style="flex: 1; min-width: 120px;" onclick="shareOnMessenger()">
-                        <i class="fab fa-facebook-messenger"></i> Messenger
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sync Progress Modal -->
-    <div class="modal" id="syncModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Deals Bari ডেটা সিঙ্ক</h2>
-                <button class="modal-close" onclick="closeModal('syncModal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="syncProgress" style="text-align: center;">
-                    <div class="loader"></div>
-                    <h4 id="syncStatus">Deals Bari থেকে ডেটা লোড হচ্ছে...</h4>
-                    <p id="syncDetails">অনুগ্রহপূর্বক অপেক্ষা করুন...</p>
-                    <div style="background: #f0f0f0; border-radius: 10px; height: 10px; margin: 20px 0;">
-                        <div id="syncProgressBar" style="background: var(--primary); height: 100%; width: 0%; border-radius: 10px; transition: width 0.5s;"></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1325,180 +1397,250 @@
         </div>
     </div>
 
+    <!-- Copy Notification -->
+    <div class="copy-notification" id="copyNotification">
+        <i class="fas fa-check-circle"></i>
+        <span id="copyMessage">ট্র্যাকিং আইডি কপি করা হয়েছে!</span>
+    </div>
+
     <!-- JavaScript Code -->
     <script>
         // ==================== Application Data ====================
-        let currentUser = null;
-        let products = [];
-        let orders = [];
-        let withdrawals = [];
-        let salesChart = null;
-        let commissionChart = null;
-        let isSyncing = false;
-
-        // DealsBari.com API Configuration
-        const DEALSBARI_API = {
-            // In a real implementation, these would be actual API endpoints
-            BASE_URL: 'https://www.dealsbari.com/api',
+        const belayetData = {
+            profile: {
+                name: "বেলায়েত হোসেন",
+                email: "belayet@dealsbari.com",
+                phone: "01997657293",
+                resellerId: "RES-BH-2024",
+                referralCode: "BHO784",
+                joinDate: "১৫ জানুয়ারি, ২০২৪"
+            },
             
-            // Mock endpoints for demo
-            PRODUCTS: '/products/affiliate',
-            ORDERS: '/orders/reseller',
-            WITHDRAWALS: '/withdrawals',
-            PROFILE: '/profile',
-            COMMISSION: '/commission',
-            SYNC: '/sync',
-            
-            // Mock data for demonstration
-            MOCK_PRODUCTS: [
-                { 
-                    id: 101, 
-                    name: "Xiaomi Redmi Note 13 Pro", 
-                    price: 29999, 
-                    commission: 5, 
-                    stock: 25, 
-                    description: "6.67 ইঞ্চি AMOLED ডিসপ্লে, 200MP ক্যামেরা, 8GB RAM",
-                    category: "মোবাইল ফোন",
-                    image: "https://via.placeholder.com/300x200/E74C3C/FFFFFF?text=Xiaomi",
-                    affiliate_link: "https://www.dealsbari.com/product/101?ref=RES123"
+            products: [
+                {
+                    id: 101,
+                    name: "Skmei 1579 Touch Screen",
+                    price: 740,
+                    commission: 20.27,
+                    stock: 15,
+                    description: "Product details of Skmei 1579 Touch Screen Led Digital Watch Luxury Stainless Steel Men Black Watches",
+                    category: "ঘড়ি",
+                    image: "https://m.media-amazon.com/images/I/71tGqP+XjDL._AC_SL1500_.jpg"
                 },
-                { 
-                    id: 102, 
-                    name: "Samsung Galaxy A34", 
-                    price: 32999, 
-                    commission: 6, 
-                    stock: 18, 
-                    description: "6.6 ইঞ্চি Super AMOLED, 48MP ক্যামেরা, 8GB RAM",
+                {
+                    id: 102,
+                    name: "Samsung Galaxy A34 5G",
+                    price: 32999,
+                    commission: 6,
+                    stock: 8,
+                    description: "6.6 ইঞ্চি Super AMOLED, 48MP ক্যামেরা, 8GB RAM, 128GB স্টোরেজ",
                     category: "মোবাইল ফোন",
-                    image: "https://via.placeholder.com/300x200/3498DB/FFFFFF?text=Samsung",
-                    affiliate_link: "https://www.dealsbari.com/product/102?ref=RES123"
+                    image: "mobile"
                 },
-                { 
-                    id: 103, 
-                    name: "Realme C55", 
-                    price: 16999, 
-                    commission: 4.5, 
-                    stock: 45, 
-                    description: "6.72 ইঞ্চি ডিসপ্লে, 64MP ক্যামেরা, 6GB RAM",
+                {
+                    id: 103,
+                    name: "Realme C55",
+                    price: 16999,
+                    commission: 4.5,
+                    stock: 22,
+                    description: "6.72 ইঞ্চি ডিসপ্লে, 64MP ক্যামেরা, 6GB RAM, 128GB স্টোরেজ",
                     category: "মোবাইল ফোন",
-                    image: "https://via.placeholder.com/300x200/2ECC71/FFFFFF?text=Realme",
-                    affiliate_link: "https://www.dealsbari.com/product/103?ref=RES123"
+                    image: "mobile"
                 },
-                { 
-                    id: 104, 
-                    name: "HP Laptop 15s", 
-                    price: 54999, 
-                    commission: 8, 
-                    stock: 12, 
-                    description: "Intel Core i5, 8GB RAM, 512GB SSD, 15.6 ইঞ্চি",
+                {
+                    id: 104,
+                    name: "HP Laptop 15s",
+                    price: 54999,
+                    commission: 8,
+                    stock: 5,
+                    description: "Intel Core i5, 8GB RAM, 512GB SSD, 15.6 ইঞ্চি ফুল HD ডিসপ্লে",
                     category: "ল্যাপটপ",
-                    image: "https://via.placeholder.com/300x200/9B59B6/FFFFFF?text=HP+Laptop",
-                    affiliate_link: "https://www.dealsbari.com/product/104?ref=RES123"
+                    image: "laptop"
                 },
-                { 
-                    id: 105, 
-                    name: "Logitech Wireless Mouse", 
-                    price: 899, 
-                    commission: 3, 
-                    stock: 120, 
-                    description: "ওয়্যারলেস মাউস, 2.4GHz রিসিভার, 12 মাস ব্যাটারি",
-                    category: "কম্পিউটার অ্যাকসেসরিজ",
-                    image: "https://via.placeholder.com/300x200/34495E/FFFFFF?text=Logitech",
-                    affiliate_link: "https://www.dealsbari.com/product/105?ref=RES123"
-                },
-                { 
-                    id: 106, 
-                    name: "Mi Smart Band 7", 
-                    price: 2999, 
-                    commission: 4, 
-                    stock: 60, 
-                    description: "1.62 ইঞ্চি AMOLED, হার্ট রেট মনিটর, 15 দিন ব্যাটারি",
+                {
+                    id: 105,
+                    name: "Mi Smart Band 7",
+                    price: 2999,
+                    commission: 4,
+                    stock: 35,
+                    description: "1.62 ইঞ্চি AMOLED, হার্ট রেট মনিটর, স্লিপ ট্র্যাকিং, 15 দিন ব্যাটারি",
                     category: "স্মার্ট ওয়াচ",
-                    image: "https://via.placeholder.com/300x200/E67E22/FFFFFF?text=Mi+Band",
-                    affiliate_link: "https://www.dealsbari.com/product/106?ref=RES123"
+                    image: "watch"
+                },
+                {
+                    id: 106,
+                    name: "Logitech Wireless Mouse",
+                    price: 899,
+                    commission: 3,
+                    stock: 50,
+                    description: "ওয়্যারলেস মাউস, 2.4GHz রিসিভার, 12 মাস ব্যাটারি লাইফ",
+                    category: "কম্পিউটার অ্যাকসেসরিজ",
+                    image: "mouse"
                 }
             ],
             
-            MOCK_ORDERS: [
-                { 
-                    id: "DB-ORD-2301", 
-                    productId: 101, 
-                    customer: "রাহিম খান", 
-                    phone: "01712345678", 
-                    quantity: 1, 
-                    total: 29999, 
-                    commission: 1500, 
-                    date: "২০২৩-১০-১৫", 
-                    status: "completed",
-                    tracking: "DB-TRACK-789123"
+            orders: [
+                {
+                    id: "DB-ORD-24001",
+                    productId: 0,
+                    customer: "খলিল",
+                    phone: "01886776261",
+                    quantity: 1,
+                    total: 740,
+                    commission: 150,
+                    date: "২৬শে জানুয়ারী, ২০২৬",
+                    status: "Pending",
+                    tracking: "SFR260127STB085601BD",
+                    courier: "Steadfast"
                 },
-                { 
-                    id: "DB-ORD-2302", 
-                    productId: 102, 
-                    customer: "করিম আহমেদ", 
-                    phone: "01987654321", 
-                    quantity: 2, 
-                    total: 65998, 
-                    commission: 3960, 
-                    date: "২০২৩-১০-১৬", 
+
+      /* 
+                {
+                    id: "DB-ORD-24002",
+                    productId: 102,
+                    customer: "সালমা আক্তার",
+                    phone: "01987654321",
+                    quantity: 2,
+                    total: 0,
+                    commission: 0,
+                    date: "১২ মার্চ, ২০২৪",
+                    status: "delivered",
+                    tracking: "DB-TRACK-789124",
+                    courier: "Steadfast"
+                },
+                {
+                    id: "DB-ORD-24003",
+                    productId: 104,
+                    customer: "করিম আহমেদ",
+                    phone: "01811223344",
+                    quantity: 1,
+                    total: 0,
+                    commission: 0,
+                    date: "১৫ মার্চ, ২০২৪",
                     status: "processing",
-                    tracking: "DB-TRACK-789124"
+                    tracking: "DB-TRACK-789125",
+                    courier: "Sundarban"
                 },
-                { 
-                    id: "DB-ORD-2303", 
-                    productId: 103, 
-                    customer: "সালমা আক্তার", 
-                    phone: "01811223344", 
-                    quantity: 1, 
-                    total: 16999, 
-                    commission: 765, 
-                    date: "২০২৩-১০-১৭", 
+                {
+                    id: "DB-ORD-24004",
+                    productId: 105,
+                    customer: "নাজমুল হাসান",
+                    phone: "01655667788",
+                    quantity: 3,
+                    total: 0,
+                    commission: 0,
+                    date: "১৮ মার্চ, ২০২৪",
+                    status: "completed",
+                    tracking: "DB-TRACK-789126",
+                    courier: "Pathao"
+                },
+                {
+                    id: "DB-ORD-24005",
+                    productId: 103,
+                    customer: "ফারহানা ইয়াসমিন",
+                    phone: "01399887766",
+                    quantity: 1,
+                    total: 0,
+                    commission: 0,
+                    date: "২০ মার্চ, ২০২৪",
                     status: "pending",
-                    tracking: ""
-                }
+                    tracking: "DB-TRACK-789127",
+                    courier: "Steadfast"
+                },
+                {
+                    id: "DB-ORD-24006",
+                    productId: 106,
+                    customer: "ইমরান হোসেন",
+                    phone: "01422334455",
+                    quantity: 5,
+                    total: 0,
+                    commission: 0,
+                    date: "২২ মার্চ, ২০২৪",
+                    status: "completed",
+                    tracking: "DB-TRACK-789128",
+                    courier: "Pathao"
+                },
+                {
+                    id: "DB-ORD-24007",
+                    productId: 101,
+                    customer: "জাহিদ হাসান",
+                    phone: "01766554433",
+                    quantity: 1,
+                    total: 0,
+                    commission: 0,
+                    date: "২৪ মার্চ, ২০২৪",
+                    status: "delivered",
+                    tracking: "DB-TRACK-789129",
+                    courier: "Sundarban"
+                }            */ 
             ],
             
-            MOCK_WITHDRAWALS: [
-                { 
-                    id: "DB-WD-2301", 
-                    amount: 5000, 
-                    method: "bkash", 
-                    account: "01712345678", 
-                    date: "২০২৩-১০-১০", 
+            withdrawals: [
+                {
+                    id: "DB-WD-24001",
+                    amount: 0,
+                    method: "bkash",
+                    account: "01997657293",
+                    date: "৫ মার্চ, ২০২৪",
                     status: "approved",
-                    note: "মাসিক উত্তোলন"
+                    note: "প্রথম মাসিক উত্তোলন"
                 },
-                { 
-                    id: "DB-WD-2302", 
-                    amount: 3000, 
-                    method: "nagad", 
-                    account: "01987654321", 
-                    date: "২০২৩-১০-১২", 
-                    status: "pending",
+                {
+                    id: "DB-WD-24002",
+                    amount: 0,
+                    method: "nagad",
+                    account: "01997657293",
+                    date: "১৫ মার্চ, ২০২৪",
+                    status: "approved",
                     note: "জরুরী উত্তোলন"
+                },
+                {
+                    id: "DB-WD-24003",
+                    amount: 0,
+                    method: "bkash",
+                    account: "01997657293",
+                    date: "২২ মার্চ, ২০২৪",
+                    status: "pending",
+                    note: "মাসিক উত্তোলন"
                 }
             ]
         };
 
+        let salesChart = null;
+        let commissionChart = null;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
         // ==================== Utility Functions ====================
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function formatCurrency(amount) {
+            return "৳ " + formatNumber(amount);
+        }
+
+        function getStatusBadge(status) {
+            const statusMap = {
+                "completed": { text: "সম্পন্ন", class: "status-delivered" },
+                "delivered": { text: "ডেলিভার্ড", class: "status-delivered" },
+                "processing": { text: "প্রসেসিং", class: "status-processing" },
+                "pending": { text: "পেন্ডিং", class: "status-pending" },
+                "approved": { text: "অনুমোদিত", class: "status-delivered" }
+            };
+            
+            const statusInfo = statusMap[status] || { text: status, class: "status-pending" };
+            return `<span class="status-badge ${statusInfo.class}">${statusInfo.text}</span>`;
+        }
+
+        function getMethodLabel(method) {
+            const methodMap = {
+                "bkash": "bKash",
+                "nagad": "Nagad",
+                "rocket": "Rocket",
+                "bank": "ব্যাংক ট্রান্সফার"
+            };
+            return methodMap[method] || method;
+        }
+
         function showToast(title, message, type = "success") {
             const toast = document.getElementById("toast");
             const toastIcon = document.getElementById("toastIcon");
@@ -1525,146 +1667,60 @@
             }, 5000);
         }
 
-        function formatCurrency(amount) {
-            return "৳ " + amount.toLocaleString("bn-BD");
+        function copyTrackingId(trackingId) {
+            navigator.clipboard.writeText(trackingId).then(function() {
+                const notification = document.getElementById('copyNotification');
+                const copyMessage = document.getElementById('copyMessage');
+                copyMessage.textContent = `ট্র্যাকিং আইডি "${trackingId}" কপি করা হয়েছে!`;
+                notification.classList.add('show');
+                
+                setTimeout(function() {
+                    notification.classList.remove('show');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+                // Fallback method
+                const tempInput = document.createElement('input');
+                document.body.appendChild(tempInput);
+                tempInput.value = trackingId;
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                
+                const notification = document.getElementById('copyNotification');
+                const copyMessage = document.getElementById('copyMessage');
+                copyMessage.textContent = `ট্র্যাকিং আইডি "${trackingId}" কপি করা হয়েছে!`;
+                notification.classList.add('show');
+                
+                setTimeout(function() {
+                    notification.classList.remove('show');
+                }, 2000);
+            });
         }
 
-        function getStatusBadge(status) {
-            const statusMap = {
-                "completed": { text: "সম্পন্ন", class: "badge-success" },
-                "processing": { text: "প্রসেসিং", class: "badge-primary" },
-                "pending": { text: "পেন্ডিং", class: "badge-warning" },
-                "approved": { text: "অনুমোদিত", class: "badge-success" },
-                "rejected": { text: "বাতিল", class: "badge-danger" },
-                "shipped": { text: "শিপড", class: "badge-info" },
-                "delivered": { text: "ডেলিভার্ড", class: "badge-success" }
-            };
-            
-            const statusInfo = statusMap[status] || { text: status, class: "badge-secondary" };
-            return `<span class="badge ${statusInfo.class}">${statusInfo.text}</span>`;
-        }
-
-        function getMethodLabel(method) {
-            const methodMap = {
-                "bkash": "bKash",
-                "nagad": "Nagad",
-                "rocket": "Rocket",
-                "bank": "ব্যাংক ট্রান্সফার"
-            };
-            return methodMap[method] || method;
-        }
-
-        // ==================== DealsBari API Functions ====================
-        async function fetchDealsBariProducts() {
-            showSyncProgress("পণ্য লোড হচ্ছে...", "Deals Bari থেকে পণ্য তালিকা সংগ্রহ করা হচ্ছে", 20);
-            
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // In real implementation, this would be:
-            // const response = await axios.get(`${DEALSBARI_API.BASE_URL}${DEALSBARI_API.PRODUCTS}`, {
-            //     headers: { 'Authorization': `Bearer ${currentUser.token}` }
-            // });
-            // return response.data;
-            
-            return DEALSBARI_API.MOCK_PRODUCTS;
-        }
-
-        async function fetchDealsBariOrders() {
-            showSyncProgress("অর্ডার লোড হচ্ছে...", "Deals Bari থেকে আপনার অর্ডার সংগ্রহ করা হচ্ছে", 50);
-            
-            await new Promise(resolve => setTimeout(resolve, 1200));
-            
-            return DEALSBARI_API.MOCK_ORDERS;
-        }
-
-        async function fetchDealsBariWithdrawals() {
-            showSyncProgress("উত্তোলন লোড হচ্ছে...", "Deals Bari থেকে উত্তোলন ইতিহাস সংগ্রহ করা হচ্ছে", 70);
-            
-            await new Promise(resolve => setTimeout(resolve, 800));
-            
-            return DEALSBARI_API.MOCK_WITHDRAWALS;
-        }
-
-        async function fetchDealsBariProfile() {
-            showSyncProgress("প্রোফাইল লোড হচ্ছে...", "Deals Bari থেকে আপনার প্রোফাইল তথ্য সংগ্রহ করা হচ্ছে", 90);
-            
-            await new Promise(resolve => setTimeout(resolve, 600));
-            
-            return {
-                name: "বেলায়েত হোসেন",
-                email: currentUser.email,
-                phone: "01997657293",
-                resellerId: "RES-" + Math.floor(100000 + Math.random() * 900000),
-                referralCode: "DBREF" + Math.floor(10000 + Math.random() * 90000),
-                joinDate: "২০২৩-০১-১৫",
-                totalSales: 125000,
-                totalCommission: 7500,
-                availableBalance: 3500
-            };
-        }
-
-        async function submitDealsBariOrder(orderData) {
-            showSyncProgress("অর্ডার সাবমিট হচ্ছে...", "Deals Bari তে নতুন অর্ডার জমা দেওয়া হচ্ছে", 40);
-            
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            
-            // Generate order ID
-            const orderId = "DB-ORD-" + (2300 + orders.length + 1);
-            
-            return {
-                success: true,
-                orderId: orderId,
-                message: "অর্ডার সফলভাবে DealsBari.com এ জমা হয়েছে",
-                trackingId: "DB-TRACK-" + Math.floor(100000 + Math.random() * 900000)
-            };
-        }
-
-        async function submitDealsBariWithdrawal(withdrawalData) {
-            showSyncProgress("উত্তোলন রিকোয়েস্ট...", "DealsBari.com এ উত্তোলন রিকোয়েস্ট জমা দেওয়া হচ্ছে", 60);
-            
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            const withdrawalId = "DB-WD-" + (2300 + withdrawals.length + 1);
-            
-            return {
-                success: true,
-                withdrawalId: withdrawalId,
-                message: "উত্তোলন রিকোয়েস্ট Deals Bari এ জমা হয়েছে"
-            };
-        }
-
-        function showSyncProgress(status, details, progress) {
-            if (!isSyncing) return;
-            
-            document.getElementById("syncStatus").textContent = status;
-            document.getElementById("syncDetails").textContent = details;
-            document.getElementById("syncProgressBar").style.width = progress + "%";
+        function trackOnSteadfast(trackingId) {
+            const steadfastUrl = `https://steadfast.com.bd/t/${trackingId}`;
+            window.open(steadfastUrl, '_blank');
         }
 
         // ==================== Page Navigation ====================
         function showPage(pageId) {
-            // Hide all pages
             document.querySelectorAll(".page-section").forEach(page => {
                 page.classList.remove("active");
             });
             
-            // Deactivate all tabs
             document.querySelectorAll(".nav-tab").forEach(tab => {
                 tab.classList.remove("active");
             });
             
-            // Activate the selected page
             document.getElementById(pageId + "Page").classList.add("active");
             
-            // Activate the corresponding tab
             document.querySelectorAll(".nav-tab").forEach(tab => {
                 if (tab.textContent.includes(getPageTitle(pageId))) {
                     tab.classList.add("active");
                 }
             });
             
-            // Update page content
             if (pageId === "dashboard") {
                 loadDashboard();
             } else if (pageId === "products") {
@@ -1682,7 +1738,7 @@
             const titles = {
                 "dashboard": "ড্যাশবোর্ড",
                 "products": "পণ্যসমূহ",
-                "orders": "অর্ডার",
+                "orders": "অর্ডারসমূহ",
                 "withdrawals": "উত্তোলন",
                 "profile": "প্রোফাইল",
                 "settings": "সেটিংস"
@@ -1690,163 +1746,15 @@
             return titles[pageId] || pageId;
         }
 
-        // ==================== Modal Functions ====================
-        function showModal(modalId) {
-            document.getElementById(modalId).classList.add("active");
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove("active");
-        }
-
-        async function showNewOrderModal() {
-            const orderFormLoading = document.getElementById("orderFormLoading");
-            const newOrderForm = document.getElementById("newOrderForm");
-            
-            orderFormLoading.style.display = "block";
-            newOrderForm.style.display = "none";
-            
-            showModal("newOrderModal");
-            
-            // Load products for dropdown
-            const productSelect = document.getElementById("orderProduct");
-            productSelect.innerHTML = '<option value="">পণ্য নির্বাচন করুন...</option>';
-            
-            if (products.length === 0) {
-                await loadDealsBariProducts();
-            }
-            
-            products.forEach(product => {
-                const option = document.createElement("option");
-                option.value = product.id;
-                option.textContent = `${product.name} - ${formatCurrency(product.price)} (${product.commission}% কমিশন)`;
-                option.setAttribute("data-price", product.price);
-                option.setAttribute("data-commission", product.commission);
-                productSelect.appendChild(option);
-            });
-            
-            // Set up event listeners for price calculation
-            productSelect.addEventListener("change", calculateOrderTotal);
-            document.getElementById("orderQuantity").addEventListener("input", calculateOrderTotal);
-            
-            calculateOrderTotal();
-            
-            orderFormLoading.style.display = "none";
-            newOrderForm.style.display = "block";
-        }
-
-        function calculateOrderTotal() {
-            const productSelect = document.getElementById("orderProduct");
-            const selectedOption = productSelect.options[productSelect.selectedIndex];
-            const quantity = parseInt(document.getElementById("orderQuantity").value) || 1;
-            
-            if (selectedOption && selectedOption.value) {
-                const price = parseFloat(selectedOption.getAttribute("data-price"));
-                const commissionRate = parseFloat(selectedOption.getAttribute("data-commission"));
-                const total = price * quantity;
-                const commission = total * (commissionRate / 100);
-                
-                document.getElementById("orderTotal").value = formatCurrency(total);
-                document.getElementById("orderCommission").value = formatCurrency(commission);
-            } else {
-                document.getElementById("orderTotal").value = "";
-                document.getElementById("orderCommission").value = "";
-            }
-        }
-
-        function showWithdrawalModal() {
-            const currentBalance = parseFloat(document.getElementById("availableBalance").textContent.replace(/[৳,]/g, '')) || 0;
-            const pendingWithdrawal = parseFloat(document.getElementById("pendingWithdrawal").textContent.replace(/[৳,]/g, '')) || 0;
-            const availableForWithdrawal = Math.max(0, currentBalance - pendingWithdrawal);
-            
-            document.getElementById("currentBalance").value = formatCurrency(currentBalance);
-            document.getElementById("availableForWithdrawal").value = formatCurrency(availableForWithdrawal);
-            document.getElementById("withdrawalAmount").max = availableForWithdrawal;
-            document.getElementById("withdrawalAmount").value = availableForWithdrawal >= 500 ? 500 : 0;
-            
-            // Update account label based on method
-            const methodSelect = document.getElementById("withdrawalMethod");
-            const accountLabel = document.getElementById("accountLabel");
-            
-            methodSelect.addEventListener("change", function() {
-                const labels = {
-                    "bkash": "bKash নম্বর (DealsBari ভেরিফাইড)",
-                    "nagad": "Nagad নম্বর (DealsBari ভেরিফাইড)",
-                    "bank": "ব্যাংক একাউন্ট নম্বর ও ব্যাংকের নাম",
-                    "rocket": "Rocket নম্বর"
-                };
-                accountLabel.textContent = labels[this.value] || "একাউন্ট বিবরণ";
-            });
-            
-            showModal("withdrawalModal");
-        }
-
-        function showShareModal(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-            
-            // Use DealsBari affiliate link
-            const shareLink = product.affiliate_link || `https://www.dealsbari.com/product/${productId}?ref=${currentUser.referralCode}`;
-            
-            document.getElementById("shareLink").value = shareLink;
-            window.currentShareLink = shareLink;
-            window.currentProductName = product.name;
-            
-            showModal("shareModal");
-        }
-
-        function copyShareLink() {
-            const shareLink = document.getElementById("shareLink");
-            shareLink.select();
-            document.execCommand("copy");
-            showToast("লিঙ্ক কপি করা হয়েছে!", "DealsBari পণ্য লিঙ্ক কপি করা হয়েছে", "success");
-        }
-
-        function shareOnFacebook() {
-            const shareLink = encodeURIComponent(window.currentShareLink);
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareLink}`, '_blank');
-        }
-
-        function shareOnWhatsApp() {
-            const shareLink = encodeURIComponent(window.currentShareLink);
-            const message = encodeURIComponent(`DealsBari.com থেকে এই পণ্যটি দেখুন: ${window.currentProductName}`);
-            window.open(`https://wa.me/?text=${message}%20${shareLink}`, '_blank');
-        }
-
-        function shareOnMessenger() {
-            const shareLink = encodeURIComponent(window.currentShareLink);
-            window.open(`https://www.facebook.com/dialog/send?link=${shareLink}&app_id=123456789&redirect_uri=${encodeURIComponent(window.location.href)}`, '_blank');
-        }
-
-        function shareAllProducts() {
-            const shareLink = `https://www.dealsbari.com?ref=${currentUser.referralCode}`;
-            
-            const text = `DealsBari.com থেকে সবচেয়ে সেরা ডিসকাউন্টে পণ্য কিনুন! আমার রেফারেল লিঙ্ক: ${shareLink}`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'DealsBari.com - সেরা অনলাইন শপিং',
-                    text: text,
-                    url: shareLink
-                });
-            } else {
-                navigator.clipboard.writeText(text);
-                showToast("লিঙ্ক কপি করা হয়েছে!", "সমস্ত DealsBari পণ্যের লিঙ্ক কপি করা হয়েছে", "success");
-            }
-        }
-
         // ==================== Data Loading Functions ====================
-        async function loadDashboard() {
-            // If no data, sync from DealsBari
-            if (orders.length === 0) {
-                await syncDealsBariData();
-            }
-            
+        function loadDashboard() {
             // Calculate totals
-            const totalSales = orders.reduce((sum, order) => sum + order.total, 0);
-            const totalCommission = orders.reduce((sum, order) => sum + order.commission, 0);
-            const totalOrders = orders.length;
-            const availableBalance = totalCommission - withdrawals.filter(w => w.status === "approved").reduce((sum, w) => sum + w.amount, 0);
+            const totalSales = belayetData.orders.reduce((sum, order) => sum + order.total, 0);
+            const totalCommission = belayetData.orders.reduce((sum, order) => sum + order.commission, 0);
+            const totalOrders = belayetData.orders.length;
+            const totalWithdrawn = belayetData.withdrawals.filter(w => w.status === "approved").reduce((sum, w) => sum + w.amount, 0);
+            const pendingWithdrawal = belayetData.withdrawals.filter(w => w.status === "pending").reduce((sum, w) => sum + w.amount, 0);
+            const availableBalance = totalCommission - totalWithdrawn - pendingWithdrawal;
             
             // Update stats
             document.getElementById("totalSales").textContent = formatCurrency(totalSales);
@@ -1854,58 +1762,255 @@
             document.getElementById("availableBalance").textContent = formatCurrency(availableBalance);
             document.getElementById("totalOrders").textContent = totalOrders;
             
-            // Load recent orders
-            const recentOrdersBody = document.getElementById("recentOrdersBody");
-            const ordersLoading = document.getElementById("ordersLoading");
+            // Update withdrawal page stats
+            document.getElementById("withdrawableBalance").textContent = formatCurrency(availableBalance);
+            document.getElementById("pendingWithdrawal").textContent = formatCurrency(pendingWithdrawal);
+            document.getElementById("totalWithdrawn").textContent = formatCurrency(totalWithdrawn);
             
-            if (orders.length > 0) {
-                ordersLoading.style.display = "none";
-                
-                recentOrdersBody.innerHTML = "";
-                
-                const recentOrders = orders.slice(0, 5);
-                recentOrders.forEach(order => {
-                    const product = products.find(p => p.id === order.productId);
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td><strong>${order.id}</strong></td>
-                        <td>${product?.name || "পণ্য"}</td>
-                        <td>${order.customer}<br><small>${order.phone}</small></td>
-                        <td>${order.quantity}</td>
-                        <td>${getStatusBadge(order.status)}</td>
-                        <td><strong class="text-success">${formatCurrency(order.commission)}</strong></td>
-                    `;
-                    recentOrdersBody.appendChild(row);
+            // Update order report table
+            updateOrderReportTable();
+            
+            // Update charts
+            updateCharts(totalSales, totalCommission, availableBalance, pendingWithdrawal, totalWithdrawn);
+            
+            // Setup event listeners
+            setupOrderReportEvents();
+        }
+
+        function updateOrderReportTable() {
+            const recentOrdersBody = document.getElementById("recentOrdersBody");
+            const totalOrdersReport = document.getElementById("totalOrdersReport");
+            
+            // Update total orders count
+            totalOrdersReport.textContent = `মোট অর্ডার: ${belayetData.orders.length}`;
+            
+            // Clear existing rows
+            recentOrdersBody.innerHTML = '';
+            
+            // Add order rows (show only 5 recent orders)
+            const recentOrders = belayetData.orders.slice(0, 5);
+            recentOrders.forEach((order, index) => {
+                const product = belayetData.products.find(p => p.id === order.productId);
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td><span class="order-no" data-order-id="${order.id}">#${order.id}</span></td>
+                    <td>${order.date}</td>
+                    <td>${formatCurrency(order.total)}</td>
+                    <td>${formatCurrency(order.commission)}</td>
+                    <td>${order.courier || "Pathao"}</td>
+                    <td>
+                        <span class="tracking-id" data-tracking-id="${order.tracking}">${order.tracking}</span>
+                    </td>
+                    <td>
+                        <button class="copy-btn" data-clipboard-text="${order.tracking}">
+                            <i class="fas fa-copy"></i> কপি
+                        </button>
+                        <button class="track-btn" data-tracking-id="${order.tracking}">
+                            <i class="fas fa-truck"></i> ট্র্যাক
+                        </button>
+                    </td>
+                    <td>${getStatusBadge(order.status)}</td>
+                    <td>
+                        <button class="view-btn" data-order-id="${order.id}">
+                            <i class="fas fa-eye"></i> দেখুন
+                        </button>
+                    </td>
+                `;
+                recentOrdersBody.appendChild(row);
+            });
+        }
+
+        function updateCharts(totalSales, totalCommission, availableBalance, pendingWithdrawal, totalWithdrawn) {
+            // Update or create sales chart
+            if (!salesChart) {
+                const salesCtx = document.getElementById('salesChart').getContext('2d');
+                salesChart = new Chart(salesCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['ফেব্রুয়ারী', 'মার্চ'],
+                        datasets: [{
+                            label: 'বিক্রয় (৳)',
+                            data: [0, totalSales],
+                            backgroundColor: ['rgba(231, 76, 60, 0.7)', 'rgba(231, 76, 60, 0.9)'],
+                            borderColor: ['rgba(231, 76, 60, 1)', 'rgba(231, 76, 60, 1)'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: true
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return '৳' + formatNumber(value);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 });
+            } else {
+                salesChart.data.datasets[0].data[1] = totalSales;
+                salesChart.update();
             }
             
-            // Initialize charts if not already done
-            if (!salesChart) {
-                initializeCharts();
+            // Update or create commission chart
+            if (!commissionChart) {
+                const commissionCtx = document.getElementById('commissionChart').getContext('2d');
+                commissionChart = new Chart(commissionCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['উপলব্ধ ব্যালেন্স', 'পেন্ডিং উত্তোলন', 'উত্তোলিত'],
+                        datasets: [{
+                            data: [availableBalance, pendingWithdrawal, totalWithdrawn],
+                            backgroundColor: [
+                                '#27AE60',
+                                '#F39C12',
+                                '#3498DB'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const label = context.label || '';
+                                        const value = context.raw || 0;
+                                        return `${label}: ${formatCurrency(value)}`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                commissionChart.data.datasets[0].data = [availableBalance, pendingWithdrawal, totalWithdrawn];
+                commissionChart.update();
             }
         }
 
-        async function loadProducts() {
+        function setupOrderReportEvents() {
+            // Remove existing event listeners by cloning elements
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.replaceWith(btn.cloneNode(true));
+            });
+            
+            document.querySelectorAll('.track-btn').forEach(btn => {
+                btn.replaceWith(btn.cloneNode(true));
+            });
+            
+            document.querySelectorAll('.order-no').forEach(order => {
+                order.replaceWith(order.cloneNode(true));
+            });
+            
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.replaceWith(btn.cloneNode(true));
+            });
+            
+            document.querySelectorAll('.tracking-id').forEach(tracking => {
+                tracking.replaceWith(tracking.cloneNode(true));
+            });
+            
+            // Add new event listeners
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const trackingId = this.getAttribute('data-clipboard-text');
+                    copyTrackingId(trackingId);
+                });
+            });
+            
+            document.querySelectorAll('.track-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const trackingId = this.getAttribute('data-tracking-id');
+                    trackOnSteadfast(trackingId);
+                });
+            });
+            
+            document.querySelectorAll('.tracking-id').forEach(tracking => {
+                tracking.addEventListener('click', function() {
+                    const trackingId = this.getAttribute('data-tracking-id');
+                    copyTrackingId(trackingId);
+                });
+            });
+            
+            document.querySelectorAll('.order-no').forEach(order => {
+                order.addEventListener('click', function() {
+                    const orderId = this.getAttribute('data-order-id');
+                    showOrderDetails(orderId);
+                });
+            });
+            
+            document.querySelectorAll('.view-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const orderId = this.getAttribute('data-order-id');
+                    showOrderDetails(orderId);
+                });
+            });
+        }
+
+        function showOrderDetails(orderId) {
+            const order = belayetData.orders.find(o => o.id === orderId);
+            if (!order) {
+                showToast("অর্ডার পাওয়া যায়নি", "এই অর্ডার আইডি পাওয়া যায়নি", "error");
+                return;
+            }
+            
+            const product = belayetData.products.find(p => p.id === order.productId);
+            const details = `
+                <strong>অর্ডার #${order.id}</strong><br>
+                <strong>তারিখ:</strong> ${order.date}<br>
+                <strong>পণ্য:</strong> ${product?.name || "পণ্য"}<br>
+                <strong>ক্রেতা:</strong> ${order.customer}<br>
+                <strong>ফোন:</strong> ${order.phone}<br>
+                <strong>পরিমাণ:</strong> ${order.quantity}<br>
+                <strong>মোট মূল্য:</strong> ${formatCurrency(order.total)}<br>
+                <strong>কমিশন:</strong> ${formatCurrency(order.commission)}<br>
+                <strong>স্ট্যাটাস:</strong> ${getStatusBadge(order.status)}<br>
+                <strong>ট্র্যাকিং আইডি:</strong> ${order.tracking}<br>
+                <strong>কুরিয়ার:</strong> ${order.courier || "Pathao"}
+            `;
+            
+            showToast("অর্ডার বিবরণ", details, "info");
+        }
+
+        function loadProducts() {
             const productsLoading = document.getElementById("productsLoading");
             const productsGrid = document.getElementById("productsGrid");
-            
-            // If no products, load from DealsBari
-            if (products.length === 0) {
-                productsLoading.style.display = "block";
-                productsGrid.style.display = "none";
-                await loadDealsBariProducts();
-            }
             
             productsLoading.style.display = "none";
             productsGrid.style.display = "grid";
             productsGrid.innerHTML = "";
             
-            products.forEach(product => {
+            belayetData.products.forEach(product => {
+                const getIcon = () => {
+                    switch(product.image) {
+                        case 'mobile': return 'fas fa-mobile-alt';
+                        case 'laptop': return 'fas fa-laptop';
+                        case 'watch': return 'fas fa-clock';
+                        case 'mouse': return 'fas fa-mouse';
+                        default: return 'fas fa-box';
+                    }
+                };
+                
                 const card = document.createElement("div");
                 card.className = "product-card";
                 card.innerHTML = `
                     <div class="product-img">
-                        <i class="fas fa-box"></i>
+                        <i class="${getIcon()}"></i>
                         <div class="product-tag">DealsBari</div>
                     </div>
                     <div class="product-info">
@@ -1917,10 +2022,10 @@
                         </div>
                         <div style="margin-bottom: 15px; display: flex; justify-content: space-between;">
                             <small>স্টক: ${product.stock} পিস</small>
-                            <small>ক্যাটাগরি: ${product.category || "সাধারণ"}</small>
+                            <small>ক্যাটাগরি: ${product.category}</small>
                         </div>
                         <div class="product-actions">
-                            <button class="btn btn-primary btn-sm" onclick="showShareModal(${product.id})" style="flex: 1;">
+                            <button class="btn btn-primary btn-sm" onclick="showShareProduct(${product.id})" style="flex: 1;">
                                 <i class="fas fa-share"></i> শেয়ার
                             </button>
                             <button class="btn btn-success btn-sm" onclick="showNewOrderModal()" style="flex: 1;">
@@ -1933,21 +2038,16 @@
             });
         }
 
-        async function loadOrders() {
+        function showShareProduct(productId) {
+            showToast("শেয়ার ফিচার", "শীঘ্রই এই ফিচারটি যোগ করা হবে!", "info");
+        }
+
+        function loadOrders() {
             const ordersBody = document.getElementById("ordersBody");
-            const ordersLoading2 = document.getElementById("ordersLoading2");
-            
-            // If no orders, load from DealsBari
-            if (orders.length === 0) {
-                ordersLoading2.style.display = "table-row";
-                await loadDealsBariOrders();
-            }
-            
-            ordersLoading2.style.display = "none";
             ordersBody.innerHTML = "";
             
-            orders.forEach(order => {
-                const product = products.find(p => p.id === order.productId);
+            belayetData.orders.forEach(order => {
+                const product = belayetData.products.find(p => p.id === order.productId);
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td><strong>${order.id}</strong></td>
@@ -1959,68 +2059,24 @@
                     <td><strong class="text-success">${formatCurrency(order.commission)}</strong></td>
                     <td>${getStatusBadge(order.status)}</td>
                     <td>
-                        ${order.tracking ? `<button class="btn btn-sm btn-info" onclick="trackOrder('${order.tracking}')">
+                        <button class="btn btn-sm btn-info" onclick="trackOrder('${order.tracking}')">
                             <i class="fas fa-truck"></i>
-                        </button>` : ''}
+                        </button>
                     </td>
                 `;
                 ordersBody.appendChild(row);
             });
-            
-            if (orders.length === 0) {
-                ordersBody.innerHTML = `
-                    <tr>
-                        <td colspan="9" style="text-align: center; padding: 40px;">
-                            <i class="fas fa-shopping-cart" style="font-size: 3rem; color: var(--gray); margin-bottom: 15px;"></i>
-                            <h4>কোনো অর্ডার নেই</h4>
-                            <p>DealsBari.com থেকে আপনার প্রথম অর্ডার তৈরি করুন!</p>
-                            <button class="btn btn-primary" onclick="showNewOrderModal()" style="margin-top: 15px;">
-                                <i class="fas fa-plus"></i> প্রথম অর্ডার করুন
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            }
         }
 
-        async function loadWithdrawals() {
+        function loadWithdrawals() {
             const withdrawalsLoading = document.getElementById("withdrawalsLoading");
             const withdrawalsList = document.getElementById("withdrawalsList");
             
-            // If no withdrawals, load from DealsBari
-            if (withdrawals.length === 0) {
-                withdrawalsLoading.style.display = "block";
-                withdrawalsList.style.display = "none";
-                await syncWithdrawals();
-            }
-            
-            // Update balance info
-            const totalCommission = orders.reduce((sum, order) => sum + order.commission, 0);
-            const totalWithdrawn = withdrawals.filter(w => w.status === "approved").reduce((sum, w) => sum + w.amount, 0);
-            const pendingWithdrawal = withdrawals.filter(w => w.status === "pending").reduce((sum, w) => sum + w.amount, 0);
-            const availableBalance = totalCommission - totalWithdrawn - pendingWithdrawal;
-            
-            document.getElementById("withdrawableBalance").textContent = formatCurrency(availableBalance);
-            document.getElementById("pendingWithdrawal").textContent = formatCurrency(pendingWithdrawal);
-            document.getElementById("totalWithdrawn").textContent = formatCurrency(totalWithdrawn);
-            
-            // Load withdrawal history
             withdrawalsLoading.style.display = "none";
             withdrawalsList.style.display = "block";
             withdrawalsList.innerHTML = "";
             
-            if (withdrawals.length === 0) {
-                withdrawalsList.innerHTML = `
-                    <div style="text-align: center; padding: 40px; background: white; border-radius: 10px;">
-                        <i class="fas fa-money-bill-wave" style="font-size: 3rem; color: var(--gray); margin-bottom: 15px;"></i>
-                        <h4>কোনো উত্তোলন নেই</h4>
-                        <p>আপনার প্রথম উত্তোলন রিকোয়েস্ট করুন!</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            withdrawals.forEach(withdrawal => {
+            belayetData.withdrawals.forEach(withdrawal => {
                 const card = document.createElement("div");
                 card.className = "withdrawal-card";
                 card.innerHTML = `
@@ -2038,473 +2094,30 @@
             });
         }
 
-        async function loadProfile() {
-            const profileLoading = document.getElementById("profileLoading");
-            const profileForm = document.getElementById("profileForm");
-            
-            profileLoading.style.display = "block";
-            profileForm.style.display = "none";
-            
-            // If no user data, sync from DealsBari
-            if (!currentUser.resellerId) {
-                await syncProfileFromDealsBari();
-            }
-            
-            document.getElementById("profileName").value = currentUser.name;
-            document.getElementById("profileEmail").value = currentUser.email;
-            document.getElementById("profilePhone").value = currentUser.phone;
-            document.getElementById("resellerId").value = currentUser.resellerId;
-            document.getElementById("referralCode").value = currentUser.referralCode;
-            document.getElementById("referralLink").value = `https://www.dealsbari.com/register?ref=${currentUser.referralCode}`;
-            
-            profileLoading.style.display = "none";
-            profileForm.style.display = "block";
+        function loadProfile() {
+            document.getElementById("profileName").value = belayetData.profile.name;
+            document.getElementById("profileEmail").value = belayetData.profile.email;
+            document.getElementById("profilePhone").value = belayetData.profile.phone;
+            document.getElementById("resellerId").value = belayetData.profile.resellerId;
+            document.getElementById("referralCode").value = belayetData.profile.referralCode;
+            document.getElementById("referralLink").value = `https://www.dealsbari.com/register?ref=${belayetData.profile.referralCode}`;
         }
 
-        function initializeCharts() {
-            // Sales Chart
-            const salesCtx = document.getElementById('salesChart').getContext('2d');
-            
-            // Calculate monthly sales
-            const monthlySales = [0, 0, 0, 0, 0, 0]; // Last 6 months
-            
-            orders.forEach(order => {
-                // Simplified: Assume orders are from last 6 months
-                const monthIndex = Math.floor(Math.random() * 6); // For demo
-                monthlySales[monthIndex] += order.total;
-            });
-            
-            salesChart = new Chart(salesCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর', 'জানুয়ারী', 'ফেব্রুয়ারী'],
-                    datasets: [{
-                        label: 'DealsBari বিক্রয় (৳)',
-                        data: monthlySales,
-                        backgroundColor: 'rgba(231, 76, 60, 0.7)',
-                        borderColor: 'rgba(231, 76, 60, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            display: true
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return '৳' + value.toLocaleString('bn-BD');
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // Commission Chart
-            const commissionCtx = document.getElementById('commissionChart').getContext('2d');
-            
-            const totalCommission = orders.reduce((sum, order) => sum + order.commission, 0);
-            const totalWithdrawn = withdrawals.filter(w => w.status === "approved").reduce((sum, w) => sum + w.amount, 0);
-            const pendingWithdrawal = withdrawals.filter(w => w.status === "pending").reduce((sum, w) => sum + w.amount, 0);
-            const availableBalance = totalCommission - totalWithdrawn - pendingWithdrawal;
-            
-            commissionChart = new Chart(commissionCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['উপলব্ধ ব্যালেন্স', 'পেন্ডিং উত্তোলন', 'উত্তোলিত'],
-                    datasets: [{
-                        data: [availableBalance, pendingWithdrawal, totalWithdrawn],
-                        backgroundColor: [
-                            '#27AE60',
-                            '#F39C12',
-                            '#3498DB'
-                        ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const label = context.label || '';
-                                    const value = context.raw || 0;
-                                    return `${label}: ৳${value.toLocaleString('bn-BD')}`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
+        // ==================== Modal Functions ====================
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add("active");
         }
 
-        // ==================== DealsBari Sync Functions ====================
-        async function syncDealsBariData() {
-            if (isSyncing) return;
-            
-            isSyncing = true;
-            showModal("syncModal");
-            
-            try {
-                showSyncProgress("Deals Bari সংযোগ হচ্ছে...", "আপনার একাউন্ট তথ্য যাচাই করা হচ্ছে", 10);
-                
-                // Sync products
-                const productsData = await fetchDealsBariProducts();
-                products = productsData;
-                localStorage.setItem('dealsbari_products', JSON.stringify(products));
-                
-                // Sync orders
-                const ordersData = await fetchDealsBariOrders();
-                orders = ordersData;
-                localStorage.setItem('dealsbari_orders', JSON.stringify(orders));
-                
-                // Sync withdrawals
-                const withdrawalsData = await fetchDealsBariWithdrawals();
-                withdrawals = withdrawalsData;
-                localStorage.setItem('dealsbari_withdrawals', JSON.stringify(withdrawals));
-                
-                // Sync profile
-                const profileData = await fetchDealsBariProfile();
-                currentUser = { ...currentUser, ...profileData };
-                localStorage.setItem('dealsbari_user', JSON.stringify(currentUser));
-                
-                showSyncProgress("ডেটা আপডেট হচ্ছে...", "সব তথ্য সফলভাবে সিঙ্ক করা হয়েছে", 100);
-                
-                setTimeout(() => {
-                    closeModal("syncModal");
-                    isSyncing = false;
-                    
-                    // Refresh all views
-                    loadDashboard();
-                    loadProducts();
-                    loadOrders();
-                    loadWithdrawals();
-                    loadProfile();
-                    
-                    showToast("ডেটা সিঙ্ক সফল!", "DealsBari.com থেকে সব তথ্য আপডেট করা হয়েছে", "success");
-                }, 1000);
-                
-            } catch (error) {
-                console.error("Sync error:", error);
-                closeModal("syncModal");
-                isSyncing = false;
-                showToast("সিঙ্ক ব্যর্থ!", "DealsBari.com থেকে ডেটা লোড করা যায়নি", "error");
-            }
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove("active");
         }
 
-        async function loadDealsBariProducts() {
-            try {
-                const productsData = await fetchDealsBariProducts();
-                products = productsData;
-                localStorage.setItem('dealsbari_products', JSON.stringify(products));
-                loadProducts(); // Refresh the view
-                showToast("পণ্য আপডেট!", "DealsBari.com থেকে পণ্য তালিকা আপডেট করা হয়েছে", "success");
-            } catch (error) {
-                showToast("লোড ব্যর্থ!", "পণ্য লোড করা যায়নি", "error");
-            }
+        function showNewOrderModal() {
+            showModal("newOrderModal");
         }
 
-        async function loadDealsBariOrders() {
-            try {
-                const ordersData = await fetchDealsBariOrders();
-                orders = ordersData;
-                localStorage.setItem('dealsbari_orders', JSON.stringify(orders));
-                loadOrders(); // Refresh the view
-                showToast("অর্ডার আপডেট!", "DealsBari.com থেকে অর্ডার তালিকা আপডেট করা হয়েছে", "success");
-            } catch (error) {
-                showToast("লোড ব্যর্থ!", "অর্ডার লোড করা যায়নি", "error");
-            }
-        }
-
-        async function syncWithdrawals() {
-            try {
-                const withdrawalsData = await fetchDealsBariWithdrawals();
-                withdrawals = withdrawalsData;
-                localStorage.setItem('dealsbari_withdrawals', JSON.stringify(withdrawals));
-                loadWithdrawals(); // Refresh the view
-                showToast("উত্তোলন আপডেট!", "DealsBari.com থেকে উত্তোলন ইতিহাস আপডেট করা হয়েছে", "success");
-            } catch (error) {
-                showToast("লোড ব্যর্থ!", "উত্তোলন লোড করা যায়নি", "error");
-            }
-        }
-
-        async function syncProfileFromDealsBari() {
-            try {
-                const profileData = await fetchDealsBariProfile();
-                currentUser = { ...currentUser, ...profileData };
-                localStorage.setItem('dealsbari_user', JSON.stringify(currentUser));
-                loadProfile(); // Refresh the view
-                showToast("প্রোফাইল আপডেট!", "DealsBari.com থেকে প্রোফাইল তথ্য আপডেট করা হয়েছে", "success");
-            } catch (error) {
-                showToast("লোড ব্যর্থ!", "প্রোফাইল লোড করা যায়নি", "error");
-            }
-        }
-
-        async function syncAllData() {
-            await syncDealsBariData();
-        }
-
-        // ==================== Form Handlers ====================
-        // Login Form
-        document.getElementById("loginForm").addEventListener("submit", async function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById("loginEmail").value;
-            const password = document.getElementById("loginPassword").value;
-            
-            // Simple validation
-            if (!email || !password) {
-                showToast("ইমেইল এবং পাসওয়ার্ড দিন", "DealsBari.com একাউন্ট তথ্য দিন", "error");
-                return;
-            }
-            
-            // Check if demo account
-            if (email === "demo@dealsbari.com" && password === "password123") {
-                await simulateDealsBariLogin(email);
-            } else {
-                // In real implementation, this would validate with DealsBari API
-                showToast("লগইন সফল!", "DealsBari.com একাউন্টে লগইন করা হয়েছে", "success");
-                await simulateDealsBariLogin(email);
-            }
-        });
-
-        // New Order Form
-        document.getElementById("newOrderForm").addEventListener("submit", async function(e) {
-            e.preventDefault();
-            
-            const productId = parseInt(document.getElementById("orderProduct").value);
-            const customerName = document.getElementById("customerName").value;
-            const customerPhone = document.getElementById("customerPhone").value;
-            const customerAddress = document.getElementById("customerAddress").value;
-            const quantity = parseInt(document.getElementById("orderQuantity").value);
-            const orderNotes = document.getElementById("orderNotes").value;
-            
-            const product = products.find(p => p.id === productId);
-            if (!product) {
-                showToast("পণ্য নির্বাচন করুন", "DealsBari পণ্য নির্বাচন করুন", "error");
-                return;
-            }
-            
-            if (quantity > product.stock) {
-                showToast("স্টক নেই", "পর্যাপ্ত স্টক নেই", "error");
-                return;
-            }
-            
-            // Submit order to DealsBari
-            const orderData = {
-                productId: productId,
-                customerName: customerName,
-                customerPhone: customerPhone,
-                customerAddress: customerAddress,
-                quantity: quantity,
-                notes: orderNotes,
-                resellerId: currentUser.resellerId,
-                referralCode: currentUser.referralCode
-            };
-            
-            const result = await submitDealsBariOrder(orderData);
-            
-            if (result.success) {
-                // Add to local orders
-                const total = product.price * quantity;
-                const commission = total * (product.commission / 100);
-                
-                const newOrder = {
-                    id: result.orderId,
-                    productId: productId,
-                    customer: customerName,
-                    phone: customerPhone,
-                    quantity: quantity,
-                    total: total,
-                    commission: commission,
-                    date: new Date().toLocaleDateString("bn-BD"),
-                    status: "pending",
-                    tracking: result.trackingId
-                };
-                
-                orders.unshift(newOrder);
-                localStorage.setItem('dealsbari_orders', JSON.stringify(orders));
-                
-                // Update product stock
-                product.stock = Math.max(0, product.stock - quantity);
-                localStorage.setItem('dealsbari_products', JSON.stringify(products));
-                
-                showToast("অর্ডার সফল!", `অর্ডার #${result.orderId} DealsBari.com এ জমা হয়েছে`, "success");
-                closeModal("newOrderModal");
-                showPage("orders");
-                loadDashboard(); // Refresh dashboard stats
-            } else {
-                showToast("অর্ডার ব্যর্থ", "অর্ডার জমা দেওয়া যায়নি", "error");
-            }
-        });
-
-        // Withdrawal Form
-        document.getElementById("withdrawalForm").addEventListener("submit", async function(e) {
-            e.preventDefault();
-            
-            const amount = parseFloat(document.getElementById("withdrawalAmount").value);
-            const method = document.getElementById("withdrawalMethod").value;
-            const account = document.getElementById("accountDetails").value;
-            const withdrawalNotes = document.getElementById("withdrawalNotes").value;
-            
-            // Check minimum amount
-            if (amount < 500) {
-                showToast("ন্যূনতম উত্তোলন", "ন্যূনতম উত্তোলনযোগ্য পরিমাণ ৳ 500", "error");
-                return;
-            }
-            
-            // Check available balance
-            const availableBalance = parseFloat(document.getElementById("availableBalance").textContent.replace(/[৳,]/g, '')) || 0;
-            if (amount > availableBalance) {
-                showToast("পর্যাপ্ত ব্যালেন্স নেই", "আপনার উত্তোলনযোগ্য ব্যালেন্স পর্যাপ্ত নয়", "error");
-                return;
-            }
-            
-            // Submit withdrawal to DealsBari
-            const withdrawalData = {
-                amount: amount,
-                method: method,
-                account: account,
-                notes: withdrawalNotes,
-                resellerId: currentUser.resellerId
-            };
-            
-            const result = await submitDealsBariWithdrawal(withdrawalData);
-            
-            if (result.success) {
-                // Add to local withdrawals
-                const newWithdrawal = {
-                    id: result.withdrawalId,
-                    amount: amount,
-                    method: method,
-                    account: account,
-                    date: new Date().toLocaleDateString("bn-BD"),
-                    status: "pending",
-                    note: withdrawalNotes
-                };
-                
-                withdrawals.unshift(newWithdrawal);
-                localStorage.setItem('dealsbari_withdrawals', JSON.stringify(withdrawals));
-                
-                showToast("উত্তোলন রিকোয়েস্ট সফল!", `উত্তোলন #${result.withdrawalId} DealsBari.com এ জমা হয়েছে`, "success");
-                closeModal("withdrawalModal");
-                showPage("withdrawals");
-            } else {
-                showToast("উত্তোলন ব্যর্থ", "উত্তোলন রিকোয়েস্ট জমা দেওয়া যায়নি", "error");
-            }
-        });
-
-        // Profile Form
-        document.getElementById("profileForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById("profileName").value;
-            const phone = document.getElementById("profilePhone").value;
-            
-            if (currentUser) {
-                currentUser.name = name;
-                currentUser.phone = phone;
-                localStorage.setItem('dealsbari_user', JSON.stringify(currentUser));
-                
-                // Update UI
-                document.getElementById("userName").textContent = name;
-                
-                showToast("প্রোফাইল আপডেট!", "আপনার প্রোফাইল তথ্য আপডেট করা হয়েছে", "success");
-            }
-        });
-
-        // Password Form
-        document.getElementById("passwordForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-            
-            const currentPassword = document.getElementById("currentPassword").value;
-            const newPassword = document.getElementById("newPassword").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
-            
-            if (newPassword.length < 6) {
-                showToast("পাসওয়ার্ড ছোট", "পাসওয়ার্ড ন্যূনতম ৬ অক্ষরের হতে হবে", "error");
-                return;
-            }
-            
-            if (newPassword !== confirmPassword) {
-                showToast("পাসওয়ার্ড মিলছে না", "নতুন পাসওয়ার্ড মিলছে না", "error");
-                return;
-            }
-            
-            // In a real app, this would update password via DealsBari API
-            showToast("পাসওয়ার্ড পরিবর্তন!", "পাসওয়ার্ড সফলভাবে পরিবর্তন করা হয়েছে", "success");
-            
-            // Clear form
-            document.getElementById("passwordForm").reset();
-        });
-
-        // ==================== Authentication Functions ====================
-        async function simulateDealsBariLogin(email) {
-            // Create user object
-            currentUser = {
-                name: "বেলায়েত হোসেন",
-                email: email,
-                phone: "01997657293",
-                token: "db_token_" + Math.random().toString(36).substr(2),
-                resellerId: "RES-" + Math.floor(100000 + Math.random() * 900000),
-                referralCode: "DBREF" + Math.floor(10000 + Math.random() * 90000)
-            };
-            
-            // Load data from localStorage or sync from DealsBari
-            const savedProducts = localStorage.getItem('dealsbari_products');
-            const savedOrders = localStorage.getItem('dealsbari_orders');
-            const savedWithdrawals = localStorage.getItem('dealsbari_withdrawals');
-            const savedUser = localStorage.getItem('dealsbari_user');
-            
-            if (savedProducts && savedOrders && savedWithdrawals && savedUser) {
-                // Use saved data
-                products = JSON.parse(savedProducts);
-                orders = JSON.parse(savedOrders);
-                withdrawals = JSON.parse(savedWithdrawals);
-                currentUser = { ...currentUser, ...JSON.parse(savedUser) };
-            } else {
-                // Sync fresh data
-                await syncDealsBariData();
-            }
-            
-            // Show dashboard
-            document.getElementById("authScreen").style.display = "none";
-            document.getElementById("dashboard").style.display = "block";
-            
-            // Update UI
-            document.getElementById("userName").textContent = currentUser.name;
-            document.getElementById("dealsbariUser").textContent = currentUser.email;
-            document.getElementById("connectionStatus").textContent = "সংযুক্ত";
-            document.getElementById("connectionStatus").className = "badge badge-success";
-            
-            // Load initial data
-            loadDashboard();
-            loadProducts();
-            loadOrders();
-            loadWithdrawals();
-            loadProfile();
-            
-            showToast("লগইন সফল!", `স্বাগতম, ${currentUser.name}! DealsBari.com রিসেলার প্যানেলে`, "success");
-        }
-
-        function logout() {
-            currentUser = null;
-            document.getElementById("dashboard").style.display = "none";
-            document.getElementById("authScreen").style.display = "flex";
-            
-            // Reset forms
-            document.getElementById("loginForm").reset();
-            
-            showToast("লগআউট সফল!", "আপনি সফলভাবে লগআউট হয়েছেন", "info");
+        function showWithdrawalModal() {
+            showModal("withdrawalModal");
         }
 
         // ==================== Other Functions ====================
@@ -2523,7 +2136,7 @@
         }
 
         function shareReferralCode() {
-            const referralCode = currentUser?.referralCode || "DBREF123";
+            const referralCode = belayetData.profile.referralCode;
             const shareLink = `https://www.dealsbari.com/register?ref=${referralCode}`;
             const text = `DealsBari.com এ রেজিস্টার করুন এবং কমিশন উপার্জন শুরু করুন! আমার রেফারেল কোড: ${referralCode}\nলিঙ্ক: ${shareLink}`;
             
@@ -2539,40 +2152,119 @@
             }
         }
 
+        function shareAllProducts() {
+            const shareLink = `https://www.dealsbari.com?ref=${belayetData.profile.referralCode}`;
+            const text = `DealsBari.com থেকে সবচেয়ে সেরা ডিসকাউন্টে পণ্য কিনুন! আমার রেফারেল লিঙ্ক: ${shareLink}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'DealsBari.com - সেরা অনলাইন শপিং',
+                    text: text,
+                    url: shareLink
+                });
+            } else {
+                navigator.clipboard.writeText(text);
+                showToast("লিঙ্ক কপি করা হয়েছে!", "সমস্ত DealsBari পণ্যের লিঙ্ক কপি করা হয়েছে", "success");
+            }
+        }
+
         function trackOrder(trackingId) {
-            window.open(`https://www.dealsbari.com/track/${trackingId}`, '_blank');
+            showToast("ট্র্যাকিং শুরু", `ট্র্যাকিং আইডি: ${trackingId}`, "info");
+            // In real implementation: window.open(`https://www.dealsbari.com/track/${trackingId}`, '_blank');
         }
 
         function refreshData() {
-            // Update dashboard stats
             loadDashboard();
             showToast("ডেটা রিফ্রেশ!", "ড্যাশবোর্ড তথ্য আপডেট করা হয়েছে", "info");
         }
 
         // ==================== Event Listeners ====================
-        // User menu toggle
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+            
+            if (email === "belayet@dealsbari.com" && password === "belayet123") {
+                // Login successful
+                document.getElementById("authScreen").style.display = "none";
+                document.getElementById("dashboard").style.display = "block";
+                
+                // Load all data
+                loadDashboard();
+                loadProducts();
+                loadOrders();
+                loadWithdrawals();
+                loadProfile();
+                
+                showToast("লগইন সফল!", `স্বাগতম, ${belayetData.profile.name}! DealsBari.com রিসেলার প্যানেলে`, "success");
+            } else {
+                showToast("লগইন ব্যর্থ", "ইমেইল বা পাসওয়ার্ড ভুল", "error");
+            }
+        });
+
+        document.getElementById("profileForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById("profileName").value;
+            const phone = document.getElementById("profilePhone").value;
+            
+            // Update profile data
+            belayetData.profile.name = name;
+            belayetData.profile.phone = phone;
+            
+            // Update UI
+            document.getElementById("userName").textContent = name;
+            document.getElementById("resellerName").textContent = name;
+            
+            showToast("প্রোফাইল আপডেট!", "আপনার প্রোফাইল তথ্য আপডেট করা হয়েছে", "success");
+        });
+
+        document.getElementById("passwordForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const currentPassword = document.getElementById("currentPassword").value;
+            const newPassword = document.getElementById("newPassword").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            
+            if (newPassword.length < 6) {
+                showToast("পাসওয়ার্ড ছোট", "পাসওয়ার্ড ন্যূনতম ৬ অক্ষরের হতে হবে", "error");
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                showToast("পাসওয়ার্ড মিলছে না", "নতুন পাসওয়ার্ড মিলছে না", "error");
+                return;
+            }
+            
+            showToast("পাসওয়ার্ড পরিবর্তন!", "পাসওয়ার্ড সফলভাবে পরিবর্তন করা হয়েছে", "success");
+            
+            // Clear form
+            document.getElementById("passwordForm").reset();
+        });
+
         document.getElementById("userMenuBtn").addEventListener("click", function() {
             document.getElementById("userDropdown").classList.toggle("show");
         });
 
-        // Close dropdown when clicking outside
         window.addEventListener("click", function(e) {
             if (!e.target.closest(".user-menu")) {
                 document.getElementById("userDropdown").classList.remove("show");
             }
         });
 
-        // Logout button
         document.getElementById("logoutBtn").addEventListener("click", function(e) {
             e.preventDefault();
-            logout();
+            document.getElementById("dashboard").style.display = "none";
+            document.getElementById("authScreen").style.display = "flex";
+            showToast("লগআউট সফল!", "আপনি সফলভাবে লগআউট হয়েছেন", "info");
         });
 
-        // Initialize on page load
+        // ==================== Initial Setup ====================
         window.addEventListener("DOMContentLoaded", function() {
-            // Pre-fill demo credentials for testing
-            document.getElementById("loginEmail").value = "demo@dealsbari.com";
-            document.getElementById("loginPassword").value = "password123";
+            // Auto fill login credentials for demo
+            document.getElementById("loginEmail").value = "belayet@dealsbari.com";
+            document.getElementById("loginPassword").value = "belayet123";
             
             // Add click event to modals to close when clicking outside
             document.querySelectorAll(".modal").forEach(modal => {
@@ -2583,25 +2275,10 @@
                 });
             });
             
-            // Check if user is already logged in
-            const savedUser = localStorage.getItem('dealsbari_user');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                document.getElementById("authScreen").style.display = "none";
-                document.getElementById("dashboard").style.display = "block";
-                document.getElementById("userName").textContent = currentUser.name;
-                
-                // Load saved data
-                const savedProducts = localStorage.getItem('dealsbari_products');
-                const savedOrders = localStorage.getItem('dealsbari_orders');
-                const savedWithdrawals = localStorage.getItem('dealsbari_withdrawals');
-                
-                if (savedProducts) products = JSON.parse(savedProducts);
-                if (savedOrders) orders = JSON.parse(savedOrders);
-                if (savedWithdrawals) withdrawals = JSON.parse(savedWithdrawals);
-                
-                loadDashboard();
-            }
+            // Auto login after 1 second for demo
+            setTimeout(() => {
+                document.getElementById("loginForm").dispatchEvent(new Event('submit'));
+            }, 1000);
         });
     </script>
 </body>
