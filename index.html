@@ -1348,6 +1348,7 @@
         </div>
     </div>
 
+    <!-- Withdrawal Modal - Updated with working form -->
     <div class="modal" id="withdrawalModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1355,13 +1356,99 @@
                 <button class="modal-close" onclick="closeModal('withdrawalModal')">&times;</button>
             </div>
             <div class="modal-body">
-                <div style="text-align: center; padding: 40px;">
-                    <i class="fas fa-tools" style="font-size: 3rem; color: var(--warning); margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 15px;">ফিচারটি ডেভেলপমেন্ট চলছে</h3>
-                    <p>উত্তোলন রিকোয়েস্ট করার ফিচারটি খুব শীঘ্রই আসছে!</p>
-                    <button class="btn btn-primary" onclick="closeModal('withdrawalModal')" style="margin-top: 20px;">
-                        <i class="fas fa-times"></i> বন্ধ করুন
+                <div id="withdrawalForm">
+                    <div class="form-group">
+                        <label class="form-label">উপলব্ধ ব্যালেন্স</label>
+                        <div style="background: #E8F5E9; padding: 12px; border-radius: 8px; text-align: center;">
+                            <h3 style="color: #27AE60; margin: 0;" id="availableForWithdrawal">৳ 150</h3>
+                            <small style="color: #7F8C8D;">সর্বনিম্ন উত্তোলন: ৳ 1</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">উত্তোলনের পরিমাণ (৳)</label>
+                        <input type="number" class="form-control" id="withdrawalAmount" 
+                               placeholder="উত্তোলনের পরিমাণ লিখুন" 
+                               min="1" step="1" required>
+                        <div style="display: flex; gap: 10px; margin-top: 10px;">
+                            <button type="button" class="btn btn-sm" style="background: #ECF0F1;" 
+                                    onclick="setWithdrawalAmount(50)">৳ 50</button>
+                            <button type="button" class="btn btn-sm" style="background: #ECF0F1;" 
+                                    onclick="setWithdrawalAmount(100)">৳ 100</button>
+                            <button type="button" class="btn btn-sm" style="background: #ECF0F1;" 
+                                    onclick="setWithdrawalAmount(500)">৳ 500</button>
+                            <button type="button" class="btn btn-sm btn-success" 
+                                    onclick="setWithdrawalAmount('all')">সব টাকা</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">উত্তোলন পদ্ধতি</label>
+                        <div class="payment-methods">
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                <label style="flex: 1; min-width: 120px;">
+                                    <input type="radio" name="withdrawalMethod" value="bkash" checked 
+                                           style="margin-right: 8px;">
+                                    <i class="fas fa-mobile-alt" style="color: #E2136E;"></i> bKash
+                                </label>
+                                <label style="flex: 1; min-width: 120px;">
+                                    <input type="radio" name="withdrawalMethod" value="nagad" 
+                                           style="margin-right: 8px;">
+                                    <i class="fas fa-wallet" style="color: #F8A01C;"></i> Nagad
+                                </label>
+                                <label style="flex: 1; min-width: 120px;">
+                                    <input type="radio" name="withdrawalMethod" value="rocket" 
+                                           style="margin-right: 8px;">
+                                    <i class="fas fa-rocket" style="color: #9B59B6;"></i> Rocket
+                                </label>
+                                <label style="flex: 1; min-width: 120px;">
+                                    <input type="radio" name="withdrawalMethod" value="bank" 
+                                           style="margin-right: 8px;">
+                                    <i class="fas fa-university" style="color: #3498DB;"></i> ব্যাংক
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="accountNumberGroup">
+                        <label class="form-label" id="accountLabel">bKash নাম্বার</label>
+                        <input type="text" class="form-control" id="accountNumber" 
+                               placeholder="01XXXXXXXXX" required>
+                    </div>
+                    
+                    <div class="form-group" id="bankDetailsGroup" style="display: none;">
+                        <label class="form-label">ব্যাংক নাম</label>
+                        <input type="text" class="form-control" id="bankName" placeholder="ব্যাংকের নাম">
+                        
+                        <label class="form-label" style="margin-top: 15px;">একাউন্ট নাম্বার</label>
+                        <input type="text" class="form-control" id="bankAccountNumber" placeholder="একাউন্ট নাম্বার">
+                        
+                        <label class="form-label" style="margin-top: 15px;">শাখা</label>
+                        <input type="text" class="form-control" id="bankBranch" placeholder="শাখার নাম">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">নোট (ঐচ্ছিক)</label>
+                        <textarea class="form-control" id="withdrawalNote" rows="3" 
+                                  placeholder="উত্তোলনের জন্য অতিরিক্ত তথ্য"></textarea>
+                    </div>
+                    
+                    <button type="button" class="btn btn-success btn-block" onclick="submitWithdrawalRequest()">
+                        <i class="fas fa-paper-plane"></i> উত্তোলন রিকোয়েস্ট করুন
                     </button>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #FFF8E1; border-radius: 8px;">
+                        <h4 style="color: #F39C12; margin-bottom: 10px;">
+                            <i class="fas fa-info-circle"></i> গুরুত্বপূর্ণ তথ্য
+                        </h4>
+                        <ul style="margin: 0; padding-left: 20px; color: #7F8C8D;">
+                            <li>সর্বনিম্ন উত্তোলন: ৳ ১</li>
+                            <li>উত্তোলন রিকোয়েস্ট প্রসেসিং সময়: ২৪-৪৮ ঘণ্টা</li>
+                            <li>প্রতি উত্তোলনে ৳ ১০ সার্ভিস চার্জ প্রযোজ্য</li>
+                            <li>সাপ্তাহিক উত্তোলন লিমিট: ৳ ৫০,০০০</li>
+                            <li>মাসিক উত্তোলন লিমিট: ৳ ২,০০,০০০</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1492,87 +1579,7 @@
                     status: "Delivered",
                     tracking: "SFR260127STB085601BD",
                     courier: "Steadfast"
-                },
-
-      /* 
-                {
-                    id: "DB-ORD-24002",
-                    productId: 102,
-                    customer: "সালমা আক্তার",
-                    phone: "01987654321",
-                    quantity: 2,
-                    total: 0,
-                    commission: 0,
-                    date: "১২ মার্চ, ২০২৪",
-                    status: "delivered",
-                    tracking: "DB-TRACK-789124",
-                    courier: "Steadfast"
-                },
-                {
-                    id: "DB-ORD-24003",
-                    productId: 104,
-                    customer: "করিম আহমেদ",
-                    phone: "01811223344",
-                    quantity: 1,
-                    total: 0,
-                    commission: 0,
-                    date: "১৫ মার্চ, ২০২৪",
-                    status: "processing",
-                    tracking: "DB-TRACK-789125",
-                    courier: "Sundarban"
-                },
-                {
-                    id: "DB-ORD-24004",
-                    productId: 105,
-                    customer: "নাজমুল হাসান",
-                    phone: "01655667788",
-                    quantity: 3,
-                    total: 0,
-                    commission: 0,
-                    date: "১৮ মার্চ, ২০২৪",
-                    status: "completed",
-                    tracking: "DB-TRACK-789126",
-                    courier: "Pathao"
-                },
-                {
-                    id: "DB-ORD-24005",
-                    productId: 103,
-                    customer: "ফারহানা ইয়াসমিন",
-                    phone: "01399887766",
-                    quantity: 1,
-                    total: 0,
-                    commission: 0,
-                    date: "২০ মার্চ, ২০২৪",
-                    status: "pending",
-                    tracking: "DB-TRACK-789127",
-                    courier: "Steadfast"
-                },
-                {
-                    id: "DB-ORD-24006",
-                    productId: 106,
-                    customer: "ইমরান হোসেন",
-                    phone: "01422334455",
-                    quantity: 5,
-                    total: 0,
-                    commission: 0,
-                    date: "২২ মার্চ, ২০২৪",
-                    status: "completed",
-                    tracking: "DB-TRACK-789128",
-                    courier: "Pathao"
-                },
-                {
-                    id: "DB-ORD-24007",
-                    productId: 101,
-                    customer: "জাহিদ হাসান",
-                    phone: "01766554433",
-                    quantity: 1,
-                    total: 0,
-                    commission: 0,
-                    date: "২৪ মার্চ, ২০২৪",
-                    status: "delivered",
-                    tracking: "DB-TRACK-789129",
-                    courier: "Sundarban"
-                }            */ 
+                }
             ],
             
             withdrawals: [
@@ -1622,6 +1629,7 @@
             const statusMap = {
                 "completed": { text: "সম্পন্ন", class: "status-delivered" },
                 "delivered": { text: "ডেলিভার্ড", class: "status-delivered" },
+                "Delivered": { text: "ডেলিভার্ড", class: "status-delivered" },
                 "processing": { text: "প্রসেসিং", class: "status-processing" },
                 "pending": { text: "পেন্ডিং", class: "status-pending" },
                 "approved": { text: "অনুমোদিত", class: "status-delivered" }
@@ -2116,8 +2124,122 @@
             showModal("newOrderModal");
         }
 
+        // ==================== Withdrawal Functions ====================
         function showWithdrawalModal() {
+            // Calculate available balance
+            const totalCommission = belayetData.orders.reduce((sum, order) => sum + order.commission, 0);
+            const totalWithdrawn = belayetData.withdrawals.filter(w => w.status === "approved").reduce((sum, w) => sum + w.amount, 0);
+            const pendingWithdrawal = belayetData.withdrawals.filter(w => w.status === "pending").reduce((sum, w) => sum + w.amount, 0);
+            const availableBalance = totalCommission - totalWithdrawn - pendingWithdrawal;
+            
+            // Update available balance in modal
+            document.getElementById("availableForWithdrawal").textContent = formatCurrency(availableBalance);
+            
+            // Set max amount for input
+            document.getElementById("withdrawalAmount").max = availableBalance;
+            document.getElementById("withdrawalAmount").value = "";
+            
+            // Reset form and auto fill phone number
+            document.getElementById("accountNumber").value = belayetData.profile.phone;
+            document.getElementById("withdrawalNote").value = "";
+            document.getElementById("bankName").value = "";
+            document.getElementById("bankAccountNumber").value = "";
+            document.getElementById("bankBranch").value = "";
+            document.getElementById("bankDetailsGroup").style.display = "none";
+            
+            // Show modal
             showModal("withdrawalModal");
+        }
+
+        function setWithdrawalAmount(amount) {
+            const input = document.getElementById("withdrawalAmount");
+            const availableBalanceText = document.getElementById("availableForWithdrawal").textContent;
+            const availableBalance = parseFloat(availableBalanceText.replace('৳ ', '').replace(',', ''));
+            
+            if (amount === 'all') {
+                input.value = availableBalance;
+            } else if (amount <= availableBalance) {
+                input.value = amount;
+            } else {
+                input.value = availableBalance;
+                showToast("সীমা ছাড়িয়েছে", "আপনার ব্যালেন্সের চেয়ে বেশি উত্তোলন করতে পারবেন না", "warning");
+            }
+        }
+
+        function submitWithdrawalRequest() {
+            const amountInput = document.getElementById("withdrawalAmount");
+            const amount = parseFloat(amountInput.value);
+            const availableBalanceText = document.getElementById("availableForWithdrawal").textContent;
+            const availableBalance = parseFloat(availableBalanceText.replace('৳ ', '').replace(',', ''));
+            const method = document.querySelector('input[name="withdrawalMethod"]:checked').value;
+            const accountNumber = document.getElementById("accountNumber").value;
+            const note = document.getElementById("withdrawalNote").value;
+            const bankName = document.getElementById("bankName").value;
+            const bankAccountNumber = document.getElementById("bankAccountNumber").value;
+            const bankBranch = document.getElementById("bankBranch").value;
+            
+            // Validation
+            if (!amount || amount < 1) {
+                showToast("অবৈধ পরিমাণ", "সর্বনিম্ন ১ টাকা উত্তোলন করতে হবে", "error");
+                amountInput.focus();
+                return;
+            }
+            
+            if (amount > availableBalance) {
+                showToast("পর্যাপ্ত ব্যালেন্স নেই", "আপনার ব্যালেন্সের চেয়ে বেশি উত্তোলন করতে পারবেন না", "error");
+                amountInput.focus();
+                return;
+            }
+            
+            if (!accountNumber) {
+                showToast("অ্যাকাউন্ট নাম্বার প্রয়োজন", "দয়া করে আপনার অ্যাকাউন্ট নাম্বার দিন", "error");
+                document.getElementById("accountNumber").focus();
+                return;
+            }
+            
+            if (method === 'bank' && (!bankName || !bankAccountNumber)) {
+                showToast("ব্যাংক তথ্য প্রয়োজন", "দয়া করে ব্যাংকের নাম ও একাউন্ট নাম্বার দিন", "error");
+                return;
+            }
+            
+            // Create withdrawal request
+            const withdrawalId = `DB-WD-${String(belayetData.withdrawals.length + 24001).slice(-4)}`;
+            
+            const newWithdrawal = {
+                id: withdrawalId,
+                amount: amount,
+                method: method,
+                account: accountNumber,
+                bankName: method === 'bank' ? bankName : '',
+                bankAccountNumber: method === 'bank' ? bankAccountNumber : '',
+                bankBranch: method === 'bank' ? bankBranch : '',
+                date: new Date().toLocaleDateString('bn-BD', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                }),
+                status: "pending",
+                note: note || `${getMethodLabel(method)} উত্তোলন`
+            };
+            
+            // Add to withdrawals array
+            belayetData.withdrawals.unshift(newWithdrawal);
+            
+            // Show success message
+            showToast("উত্তোলন রিকোয়েস্ট সফল!", 
+                     `আপনার ${formatCurrency(amount)} উত্তোলন রিকোয়েস্ট পাঠানো হয়েছে`, 
+                     "success");
+            
+            // Close modal
+            closeModal("withdrawalModal");
+            
+            // Refresh withdrawals page
+            if (document.getElementById("withdrawalsPage").classList.contains("active")) {
+                loadWithdrawals();
+            }
+            
+            // Refresh dashboard
+            loadDashboard();
         }
 
         // ==================== Other Functions ====================
@@ -2258,6 +2380,35 @@
             document.getElementById("dashboard").style.display = "none";
             document.getElementById("authScreen").style.display = "flex";
             showToast("লগআউট সফল!", "আপনি সফলভাবে লগআউট হয়েছেন", "info");
+        });
+
+        // ==================== Payment Method Change Handler ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Withdrawal method change handler
+            document.querySelectorAll('input[name="withdrawalMethod"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const method = this.value;
+                    const accountLabel = document.getElementById("accountLabel");
+                    const accountNumberGroup = document.getElementById("accountNumberGroup");
+                    const bankDetailsGroup = document.getElementById("bankDetailsGroup");
+                    
+                    if (method === 'bank') {
+                        accountLabel.textContent = "মোবাইল নাম্বার (যোগাযোগের জন্য)";
+                        bankDetailsGroup.style.display = 'block';
+                    } else {
+                        const labels = {
+                            'bkash': 'bKash নাম্বার',
+                            'nagad': 'Nagad নাম্বার',
+                            'rocket': 'Rocket নাম্বার'
+                        };
+                        accountLabel.textContent = labels[method] || 'মোবাইল নাম্বার';
+                        bankDetailsGroup.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Auto set phone number from profile
+            document.getElementById("accountNumber").value = belayetData.profile.phone;
         });
 
         // ==================== Initial Setup ====================
