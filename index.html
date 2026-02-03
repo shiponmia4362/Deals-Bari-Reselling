@@ -1348,7 +1348,7 @@
         </div>
     </div>
 
-    <!-- Withdrawal Modal - Updated with working form -->
+    <!-- Withdrawal Modal -->
     <div class="modal" id="withdrawalModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1607,7 +1607,7 @@
                     method: "bkash",
                     account: "01997657293",
                     date: "২২ মার্চ, ২০২৪",
-                    status: "pending",
+                    status: "approved",
                     note: "মাসিক উত্তোলন"
                 }
             ]
@@ -1761,8 +1761,9 @@
             const totalCommission = belayetData.orders.reduce((sum, order) => sum + order.commission, 0);
             const totalOrders = belayetData.orders.length;
             const totalWithdrawn = belayetData.withdrawals.filter(w => w.status === "approved").reduce((sum, w) => sum + w.amount, 0);
-            const pendingWithdrawal = belayetData.withdrawals.filter(w => w.status === "pending").reduce((sum, w) => sum + w.amount, 0);
-            const availableBalance = totalCommission - totalWithdrawn - pendingWithdrawal;
+            
+            // Available balance: Total commission minus total withdrawn
+            const availableBalance = totalCommission - totalWithdrawn;
             
             // Update stats
             document.getElementById("totalSales").textContent = formatCurrency(totalSales);
@@ -1772,14 +1773,14 @@
             
             // Update withdrawal page stats
             document.getElementById("withdrawableBalance").textContent = formatCurrency(availableBalance);
-            document.getElementById("pendingWithdrawal").textContent = formatCurrency(pendingWithdrawal);
+            document.getElementById("pendingWithdrawal").textContent = formatCurrency(0); // Always 0
             document.getElementById("totalWithdrawn").textContent = formatCurrency(totalWithdrawn);
             
             // Update order report table
             updateOrderReportTable();
             
             // Update charts
-            updateCharts(totalSales, totalCommission, availableBalance, pendingWithdrawal, totalWithdrawn);
+            updateCharts(totalSales, totalCommission, availableBalance, 0, totalWithdrawn);
             
             // Setup event listeners
             setupOrderReportEvents();
@@ -1875,12 +1876,11 @@
                 commissionChart = new Chart(commissionCtx, {
                     type: 'doughnut',
                     data: {
-                        labels: ['উপলব্ধ ব্যালেন্স', 'পেন্ডিং উত্তোলন', 'উত্তোলিত'],
+                        labels: ['উপলব্ধ ব্যালেন্স', 'উত্তোলিত'],
                         datasets: [{
-                            data: [availableBalance, pendingWithdrawal, totalWithdrawn],
+                            data: [availableBalance, totalWithdrawn],
                             backgroundColor: [
                                 '#27AE60',
-                                '#F39C12',
                                 '#3498DB'
                             ]
                         }]
@@ -1904,7 +1904,8 @@
                     }
                 });
             } else {
-                commissionChart.data.datasets[0].data = [availableBalance, pendingWithdrawal, totalWithdrawn];
+                commissionChart.data.labels = ['উপলব্ধ ব্যালেন্স', 'উত্তোলিত'];
+                commissionChart.data.datasets[0].data = [availableBalance, totalWithdrawn];
                 commissionChart.update();
             }
         }
@@ -2129,8 +2130,7 @@
             // Calculate available balance
             const totalCommission = belayetData.orders.reduce((sum, order) => sum + order.commission, 0);
             const totalWithdrawn = belayetData.withdrawals.filter(w => w.status === "approved").reduce((sum, w) => sum + w.amount, 0);
-            const pendingWithdrawal = belayetData.withdrawals.filter(w => w.status === "pending").reduce((sum, w) => sum + w.amount, 0);
-            const availableBalance = totalCommission - totalWithdrawn - pendingWithdrawal;
+            const availableBalance = totalCommission - totalWithdrawn;
             
             // Update available balance in modal
             document.getElementById("availableForWithdrawal").textContent = formatCurrency(availableBalance);
@@ -2202,7 +2202,7 @@
                 return;
             }
             
-            // Create withdrawal request
+            // Create withdrawal request - IMMEDIATELY APPROVED
             const withdrawalId = `DB-WD-${String(belayetData.withdrawals.length + 24001).slice(-4)}`;
             
             const newWithdrawal = {
@@ -2218,7 +2218,7 @@
                     month: 'long', 
                     day: 'numeric' 
                 }),
-                status: "pending",
+                status: "approved", // IMMEDIATELY APPROVED, NOT PENDING
                 note: note || `${getMethodLabel(method)} উত্তোলন`
             };
             
@@ -2226,8 +2226,8 @@
             belayetData.withdrawals.unshift(newWithdrawal);
             
             // Show success message
-            showToast("উত্তোলন রিকোয়েস্ট সফল!", 
-                     `আপনার ${formatCurrency(amount)} উত্তোলন রিকোয়েস্ট পাঠানো হয়েছে`, 
+            showToast("উত্তোলন সফল!", 
+                     `আপনার ${formatCurrency(amount)} উত্তোলিত হয়েছে`, 
                      "success");
             
             // Close modal
@@ -2238,8 +2238,15 @@
                 loadWithdrawals();
             }
             
-            // Refresh dashboard
+            // Refresh dashboard - This will update available balance automatically
             loadDashboard();
+            
+            // Show notification about the withdrawal
+            setTimeout(() => {
+                showToast("ব্যালেন্স আপডেট", 
+                         `আপনার উপলব্ধ ব্যালেন্স এখন: ${formatCurrency(availableBalance - amount)}`, 
+                         "info");
+            }, 1500);
         }
 
         // ==================== Other Functions ====================
