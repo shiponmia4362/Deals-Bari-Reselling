@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>DealsBari.com রিসেলার প্যানেল - বেলায়েত হোসেন</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -36,15 +36,15 @@
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px; /* Increased for better desktop view */
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
         }
 
         .header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 15px 0;
+            padding: 12px 0;
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
@@ -56,32 +56,36 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: nowrap; /* Prevent wrapping */
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
+            gap: 8px;
+            font-size: 1.3rem;
             font-weight: 700;
+            white-space: nowrap;
         }
 
         .logo i {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
         }
 
         .dealsbari-badge {
             background: white;
             color: var(--primary);
-            padding: 3px 10px;
+            padding: 3px 8px;
             border-radius: 15px;
-            font-size: 0.8rem;
-            margin-left: 10px;
+            font-size: 0.7rem;
+            margin-left: 5px;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .user-menu {
             position: relative;
+            flex-shrink: 0; /* Prevent shrinking */
         }
 
         .user-btn {
@@ -95,6 +99,7 @@
             gap: 8px;
             cursor: pointer;
             transition: all 0.3s;
+            white-space: nowrap;
         }
 
         .user-btn:hover {
@@ -109,7 +114,7 @@
             color: var(--dark);
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            width: 200px;
+            width: 220px;
             display: none;
             z-index: 1001;
         }
@@ -138,7 +143,7 @@
         }
 
         .main-content {
-            margin-top: 80px;
+            margin-top: 70px;
             padding: 20px 0 40px;
         }
 
@@ -160,26 +165,29 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
             border-bottom: 2px solid var(--light-gray);
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .page-title {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--primary);
             display: flex;
             align-items: center;
             gap: 10px;
+            white-space: nowrap;
         }
 
         .page-title i {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
@@ -187,7 +195,7 @@
         .stat-card {
             background: white;
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             display: flex;
             align-items: center;
@@ -197,28 +205,28 @@
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
 
         .stat-info h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-bottom: 5px;
         }
 
         .stat-info p {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .stat-icon {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: white;
             background: var(--primary);
         }
@@ -230,7 +238,7 @@
 
         .charts-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
@@ -238,12 +246,12 @@
         .chart-box {
             background: white;
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
         .chart-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 15px;
             color: var(--dark);
             text-align: center;
@@ -261,16 +269,18 @@
         .order-report-title {
             background: linear-gradient(135deg, #2c3e50, #4a6491);
             color: white;
-            padding: 20px;
+            padding: 15px 20px;
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .order-report-title i {
-            margin-right: 10px;
+            margin-right: 8px;
         }
         
         .table-container {
@@ -281,7 +291,7 @@
         .order-report-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 1000px;
+            min-width: 1200px; /* Ensures desktop layout */
         }
         
         .order-report-table thead {
@@ -290,26 +300,25 @@
         }
         
         .order-report-table th {
-            padding: 16px 12px;
+            padding: 14px 12px;
             text-align: left;
             font-weight: 600;
             color: #2c3e50;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             border-bottom: 2px solid #dee2e6;
         }
         
         .order-report-table td {
-            padding: 16px 12px;
+            padding: 14px 12px;
             border-bottom: 1px solid #eaeaea;
             color: #333;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         
         .order-report-table tbody tr:hover {
             background-color: #f9f9f9;
-            transition: background-color 0.2s;
         }
         
         .order-no {
@@ -327,15 +336,15 @@
         .tracking-id {
             font-family: 'Courier New', monospace;
             background-color: #f8f9fa;
-            padding: 5px 10px;
+            padding: 4px 8px;
             border-radius: 4px;
             border: 1px dashed #bdc3c7;
             font-weight: 600;
             color: #2c3e50;
             cursor: pointer;
-            position: relative;
             display: inline-block;
             transition: all 0.2s;
+            font-size: 0.85rem;
         }
         
         .tracking-id:hover {
@@ -347,15 +356,15 @@
             background-color: #f1f8ff;
             border: 1px solid #d1e3ff;
             color: #0366d6;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 4px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             transition: all 0.2s;
-            margin-right: 5px;
+            margin-right: 4px;
         }
         
         .copy-btn:hover {
@@ -367,13 +376,13 @@
             background-color: #ff6b6b;
             color: white;
             border: none;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 4px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             transition: all 0.2s;
         }
         
@@ -384,11 +393,12 @@
         }
         
         .status-badge {
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             display: inline-block;
+            white-space: nowrap;
         }
         
         .status-delivered {
@@ -410,13 +420,13 @@
             background-color: #28a745;
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 4px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             transition: all 0.2s;
         }
         
@@ -429,7 +439,7 @@
         .table-container-regular {
             background: white;
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             overflow-x: auto;
         }
@@ -437,20 +447,23 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 800px; /* Keeps table in desktop mode */
         }
 
         th {
             background: var(--light);
             color: var(--dark);
-            padding: 15px;
+            padding: 12px 10px;
             text-align: left;
             font-weight: 600;
             border-bottom: 2px solid var(--light-gray);
+            white-space: nowrap;
         }
 
         td {
-            padding: 15px;
+            padding: 12px 10px;
             border-bottom: 1px solid var(--light-gray);
+            white-space: nowrap;
         }
 
         tr:hover {
@@ -459,10 +472,11 @@
 
         .badge {
             display: inline-block;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .badge-success { background: #d4edda; color: #155724; }
@@ -474,29 +488,30 @@
         .form-container {
             background: white;
             border-radius: 12px;
-            padding: 30px;
+            padding: 25px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
             color: var(--dark);
+            font-size: 0.95rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: 10px 12px;
             border: 1px solid #ddd;
             border-radius: 6px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: border 0.3s;
         }
 
@@ -508,13 +523,14 @@
 
         .btn {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border: none;
             border-radius: 6px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            white-space: nowrap;
         }
 
         .btn-primary {
@@ -541,6 +557,11 @@
             width: 100%;
         }
 
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -563,7 +584,7 @@
             background: white;
             border-radius: 12px;
             width: 100%;
-            max-width: 500px;
+            max-width: 550px;
             max-height: 90vh;
             overflow-y: auto;
             animation: modalFadeIn 0.3s;
@@ -576,7 +597,7 @@
         }
 
         .modal-header {
-            padding: 20px;
+            padding: 18px 20px;
             border-bottom: 1px solid var(--light-gray);
             display: flex;
             justify-content: space-between;
@@ -587,7 +608,7 @@
         }
 
         .modal-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: white;
         }
 
@@ -600,28 +621,31 @@
         }
 
         .modal-body {
-            padding: 25px;
+            padding: 20px;
         }
 
         .nav-tabs {
             display: flex;
             background: white;
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+            margin-bottom: 25px;
+            flex-wrap: nowrap; /* Prevent wrapping */
+            overflow-x: auto; /* Allow horizontal scroll if needed on very small screens */
+            -webkit-overflow-scrolling: touch;
         }
 
         .nav-tab {
-            flex: 1;
-            min-width: 140px;
+            flex: 0 0 auto; /* Don't grow or shrink */
             text-align: center;
-            padding: 15px;
+            padding: 14px 18px;
             cursor: pointer;
             border-bottom: 3px solid transparent;
             transition: all 0.3s;
             font-weight: 600;
+            white-space: nowrap;
+            font-size: 0.95rem;
         }
 
         .nav-tab:hover {
@@ -636,8 +660,8 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
         }
 
         .product-card {
@@ -650,93 +674,91 @@
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .product-img {
-            height: 180px;
+            height: 160px;
             background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 2.5rem;
             position: relative;
         }
 
         .product-tag {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 10px;
+            right: 10px;
             background: var(--primary);
             color: white;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 600;
         }
 
         .product-info {
-            padding: 20px;
+            padding: 15px;
         }
 
         .product-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
             color: var(--dark);
-            height: 50px;
+            height: 45px;
             overflow: hidden;
         }
 
         .product-price {
             color: var(--primary);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .product-commission {
             background: var(--success);
             color: white;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 600;
         }
 
         .product-actions {
             display: flex;
-            gap: 10px;
-        }
-
-        .btn-sm {
-            padding: 8px 16px;
-            font-size: 0.9rem;
+            gap: 8px;
         }
 
         .withdrawal-card {
             background: white;
             border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
+            padding: 18px;
+            margin-bottom: 12px;
             box-shadow: 0 3px 15px rgba(0,0,0,0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-left: 4px solid var(--success);
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .withdrawal-info h4 {
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             color: var(--dark);
+            font-size: 1.2rem;
         }
 
         .withdrawal-date {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .auth-container {
@@ -751,7 +773,7 @@
         .auth-box {
             background: white;
             border-radius: 15px;
-            padding: 40px;
+            padding: 35px;
             width: 100%;
             max-width: 400px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
@@ -759,8 +781,9 @@
 
         .auth-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             color: var(--primary);
+            font-size: 1.5rem;
         }
 
         .auth-switch {
@@ -779,10 +802,10 @@
             border: 4px solid #f3f3f3;
             border-top: 4px solid var(--primary);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             animation: spin 1s linear infinite;
-            margin: 20px auto;
+            margin: 15px auto;
         }
 
         @keyframes spin {
@@ -796,13 +819,13 @@
             right: 20px;
             background-color: #2ecc71;
             color: white;
-            padding: 12px 20px;
+            padding: 12px 18px;
             border-radius: 6px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             z-index: 10000;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transform: translateX(150%);
             transition: transform 0.3s ease;
         }
@@ -836,49 +859,58 @@
             font-size: 1.2rem;
         }
 
+        /* Force desktop-like scrolling on all devices */
+        html, body {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .container, .main-content, .page-section {
+            min-width: 320px; /* Minimum width */
+        }
+
+        /* Ensure tables don't wrap on mobile */
         @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .charts-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-container {
-                padding: 20px;
+            .nav-tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 2px;
             }
             
             .nav-tab {
-                min-width: 120px;
+                padding: 12px 15px;
+                font-size: 0.9rem;
             }
             
-            .page-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+            .page-title {
+                font-size: 1.4rem;
+                white-space: normal;
             }
             
-            .order-report-title {
-                flex-direction: column;
-                align-items: flex-start;
+            .header-content {
                 gap: 10px;
             }
             
-            .order-report-table th,
-            .order-report-table td {
-                padding: 12px 8px;
-                font-size: 0.85rem;
+            .logo {
+                font-size: 1.1rem;
             }
             
-            .view-btn, .copy-btn, .track-btn {
-                padding: 6px 10px;
-                font-size: 0.8rem;
+            .logo i {
+                font-size: 1.3rem;
             }
+            
+            .user-btn span {
+                max-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        /* Ensure horizontal scroll for tables */
+        .table-container, .table-container-regular {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
     </style>
 </head>
@@ -925,8 +957,8 @@
             <div class="container header-content">
                 <div class="logo">
                     <i class="fas fa-store"></i>
-                    <span>Deals Bari রিসেলার</span>
-                    <span class="dealsbari-badge">বেলায়েত হোসেন</span>
+                    <span>রিসেলার</span>
+                    <span class="dealsbari-badge">Deals Bari</span>
                 </div>
                 
                 <div class="user-menu">
@@ -960,13 +992,14 @@
         <!-- Main Content -->
         <main class="main-content">
             <div class="container">
-                <!-- Navigation Tabs -->
+                <!-- Navigation Tabs - Always in desktop row layout -->
                 <div class="nav-tabs">
                     <div class="nav-tab active" onclick="showPage('dashboard')">
                         <i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড
                     </div>
-                    <div class="nav-tab" onclick="showPage('products')">
-                        <i class="fas fa-box"></i> <a href="https://elitemart.com.bd/fraud-check?srsltid=AfmBOor_6VyyyswhvdaGL4t48P4Tk6LLXJs84naRAqvSimoJy7_prmbE" style="text-decoration: none;">কাস্টমার হেলথ চেকার</a>
+                  
+                    <div class="nav-tab" onclick="window.open('https://elitemart.com.bd/fraud-check?srsltid=AfmBOor_6VyyyswhvdaGL4t48P4Tk6LLXJs84naRAqvSimoJy7_prmbE', '_blank')">
+                        <i class="fas fa-shield-alt"></i> কাস্টমার হেলথ চেকার
                     </div>
                     <div class="nav-tab" onclick="showPage('orders')">
                         <i class="fas fa-shopping-cart"></i> অর্ডারসমূহ
@@ -1243,12 +1276,12 @@
                             
                             <div class="form-group">
                                 <label class="form-label">রেফারেল কোড</label>
-                                <div style="display: flex; gap: 10px;">
+                                <div style="display: flex; gap: 8px;">
                                     <input type="text" class="form-control" id="referralCode" value="BHO784" readonly style="flex: 1;">
-                                    <button type="button" class="btn btn-primary" onclick="copyReferralCode()">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="copyReferralCode()">
                                         <i class="fas fa-copy"></i> কপি
                                     </button>
-                                    <button type="button" class="btn btn-success" onclick="shareReferralCode()">
+                                    <button type="button" class="btn btn-success btn-sm" onclick="shareReferralCode()">
                                         <i class="fas fa-share"></i> শেয়ার
                                     </button>
                                 </div>
@@ -1256,9 +1289,9 @@
                             
                             <div class="form-group">
                                 <label class="form-label">রেফারেল লিঙ্ক</label>
-                                <div style="display: flex; gap: 10px;">
+                                <div style="display: flex; gap: 8px;">
                                     <input type="text" class="form-control" id="referralLink" value="https://www.dealsbari.com/register?ref=BHO784" readonly style="flex: 1;">
-                                    <button type="button" class="btn btn-primary" onclick="copyReferralLink()">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="copyReferralLink()">
                                         <i class="fas fa-copy"></i> কপি
                                     </button>
                                 </div>
@@ -1285,7 +1318,7 @@
                                 <i class="fas fa-link"></i> Deals Bari সংযোগ
                             </h3>
                             <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                                <p style="margin-bottom: 10px;"><strong>সংযোগ স্ট্যাটাস:</strong> 
+                                <p style="margin-bottom: 8px;"><strong>সংযোগ স্ট্যাটাস:</strong> 
                                     <span id="connectionStatus" class="badge badge-success">সক্রিয়</span>
                                 </p>
                                 <p><strong>Deals Bari ইউজার:</strong> <span id="dealsbariUser">belayet@dealsbari.com</span></p>
@@ -1359,7 +1392,7 @@
                 <div id="withdrawalForm">
                     <div class="form-group">
                         <label class="form-label">উপলব্ধ ব্যালেন্স</label>
-                        <div style="background: #E8F5E9; padding: 12px; border-radius: 8px; text-align: center;">
+                        <div style="background: #E8F5E9; padding: 10px; border-radius: 8px; text-align: center;">
                             <h3 style="color: #27AE60; margin: 0;" id="availableForWithdrawal">৳ 150</h3>
                             <small style="color: #7F8C8D;">সর্বনিম্ন উত্তোলন: ৳ 1</small>
                         </div>
@@ -1370,7 +1403,7 @@
                         <input type="number" class="form-control" id="withdrawalAmount" 
                                placeholder="উত্তোলনের পরিমাণ লিখুন" 
                                min="1" step="1" required>
-                        <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;">
                             <button type="button" class="btn btn-sm" style="background: #ECF0F1;" 
                                     onclick="setWithdrawalAmount(50)">৳ 50</button>
                             <button type="button" class="btn btn-sm" style="background: #ECF0F1;" 
@@ -1386,24 +1419,24 @@
                         <label class="form-label">উত্তোলন পদ্ধতি</label>
                         <div class="payment-methods">
                             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                                <label style="flex: 1; min-width: 120px;">
+                                <label style="flex: 1; min-width: 100px;">
                                     <input type="radio" name="withdrawalMethod" value="bkash" checked 
-                                           style="margin-right: 8px;">
+                                           style="margin-right: 4px;">
                                     <i class="fas fa-mobile-alt" style="color: #E2136E;"></i> bKash
                                 </label>
-                                <label style="flex: 1; min-width: 120px;">
+                                <label style="flex: 1; min-width: 100px;">
                                     <input type="radio" name="withdrawalMethod" value="nagad" 
-                                           style="margin-right: 8px;">
+                                           style="margin-right: 4px;">
                                     <i class="fas fa-wallet" style="color: #F8A01C;"></i> Nagad
                                 </label>
-                                <label style="flex: 1; min-width: 120px;">
+                                <label style="flex: 1; min-width: 100px;">
                                     <input type="radio" name="withdrawalMethod" value="rocket" 
-                                           style="margin-right: 8px;">
+                                           style="margin-right: 4px;">
                                     <i class="fas fa-rocket" style="color: #9B59B6;"></i> Rocket
                                 </label>
-                                <label style="flex: 1; min-width: 120px;">
+                                <label style="flex: 1; min-width: 100px;">
                                     <input type="radio" name="withdrawalMethod" value="bank" 
-                                           style="margin-right: 8px;">
+                                           style="margin-right: 4px;">
                                     <i class="fas fa-university" style="color: #3498DB;"></i> ব্যাংক
                                 </label>
                             </div>
@@ -1420,10 +1453,10 @@
                         <label class="form-label">ব্যাংক নাম</label>
                         <input type="text" class="form-control" id="bankName" placeholder="ব্যাংকের নাম">
                         
-                        <label class="form-label" style="margin-top: 15px;">একাউন্ট নাম্বার</label>
+                        <label class="form-label" style="margin-top: 12px;">একাউন্ট নাম্বার</label>
                         <input type="text" class="form-control" id="bankAccountNumber" placeholder="একাউন্ট নাম্বার">
                         
-                        <label class="form-label" style="margin-top: 15px;">শাখা</label>
+                        <label class="form-label" style="margin-top: 12px;">শাখা</label>
                         <input type="text" class="form-control" id="bankBranch" placeholder="শাখার নাম">
                     </div>
                     
@@ -1437,11 +1470,11 @@
                         <i class="fas fa-paper-plane"></i> উত্তোলন রিকোয়েস্ট করুন
                     </button>
                     
-                    <div style="margin-top: 20px; padding: 15px; background: #FFF8E1; border-radius: 8px;">
-                        <h4 style="color: #F39C12; margin-bottom: 10px;">
+                    <div style="margin-top: 20px; padding: 12px; background: #FFF8E1; border-radius: 8px;">
+                        <h4 style="color: #F39C12; margin-bottom: 8px;">
                             <i class="fas fa-info-circle"></i> গুরুত্বপূর্ণ তথ্য
                         </h4>
-                        <ul style="margin: 0; padding-left: 20px; color: #7F8C8D;">
+                        <ul style="margin: 0; padding-left: 18px; color: #7F8C8D; font-size: 0.9rem;">
                             <li>সর্বনিম্ন উত্তোলন: ৳ ১</li>
                             <li>উত্তোলন রিকোয়েস্ট প্রসেসিং সময়: ২৪-৪৮ ঘণ্টা</li>
                             <li>প্রতি উত্তোলনে ৳ ১০ সার্ভিস চার্জ প্রযোজ্য</li>
@@ -1474,12 +1507,12 @@
     </div>
 
     <!-- Notification Toast -->
-    <div id="toast" style="position: fixed; bottom: 20px; right: 20px; background: #27AE60; color: white; padding: 15px 20px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 2000; display: none; min-width: 300px; max-width: 400px;">
-        <div style="display: flex; align-items: center; gap: 10px;">
+    <div id="toast" style="position: fixed; bottom: 20px; right: 20px; background: #27AE60; color: white; padding: 12px 18px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 2000; display: none; min-width: 280px; max-width: 350px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
             <i class="fas fa-check-circle" id="toastIcon" style="font-size: 1.2rem;"></i>
             <div>
-                <div style="font-weight: 600; margin-bottom: 5px;" id="toastTitle">সফল!</div>
-                <div id="toastMessage">অপারেশন সফলভাবে সম্পন্ন হয়েছে</div>
+                <div style="font-weight: 600; margin-bottom: 3px;" id="toastTitle">সফল!</div>
+                <div id="toastMessage" style="font-size: 0.9rem;">অপারেশন সফলভাবে সম্পন্ন হয়েছে</div>
             </div>
         </div>
     </div>
@@ -1567,7 +1600,87 @@
             ],
             
             orders: [
-                {
+            
+            {
+            id: "DB-ORD-24006",
+            productId: 0,
+            customer: "Abdul Alim",
+            phone: "01776792304",
+            quantity: 1,
+            total: 490,
+            commission: 70,
+            date: "23 February, 2026",
+            status: "Processing",
+            tracking: "000000",
+            courier: "Steadfast"
+            },
+            
+            
+            
+            
+            {
+            id: "DB-ORD-24005",
+            productId: 0,
+            customer: "Jihad Hasan",
+            phone: "01885****144",
+            quantity: 1,
+            total: 1150,
+            commission: 30,
+            date: "16 February, 2026",
+            status: "Shipping",
+            tracking: "SFR260217STADC8EFEBD",
+            courier: "Steadfast"
+            },
+            
+            
+            {
+            id: "DB-ORD-24004",
+            productId: 0,
+            customer: "Mim Akter",
+            phone: "01863678533",
+            quantity: 1,
+            total: 770,
+            commission: 110,
+            date: "16 February, 2026",
+            status: "Delivered",
+            tracking: "SFR260221ST5AC4829BD",
+            courier: "Steadfast"
+            },
+        
+           
+           {
+           
+           id: "DB-ORD-24003",
+           productId: 0,
+           customer: "Subrina Sumaya",
+           phone: "01645......441",
+           quantity: 1,
+           total: 970,
+           commission: 135,
+           date: "14 February, 2026",
+           status: "Delivered",
+           tracking: "SFR260214STC7C5B10BD",
+           courier: "Steadfast"
+           },
+           
+           
+           {
+           
+           id: "DB-ORD-24002",
+           productId: 0,
+           customer: "Afrin",
+           phone: "01824713827",
+           quantity: 1,
+           total: 1050,
+           commission: 100,
+           date: "02 February, 2026",
+           status: "Delivered",
+           tracking: "SFR260204ST617407ABD",
+           courier: "Steadfast"
+           },
+           
+           
+           {
                     id: "DB-ORD-24001",
                     productId: 0,
                     customer: "খলিল",
@@ -1579,79 +1692,13 @@
                     status: "Delivered",
                     tracking: "SFR260127STB085601BD",
                     courier: "Steadfast"
-                },
-                
-                {
-                id: "DB-ORD-24002",
-                productId: 0,
-                customer: "Afrin",
-                phone: "01.........27",
-                quantity: 1,
-                total: 1050,
-                commission: 90,
-                date: "3 February, 2026",
-                status: "Delivered",
-                tracking: "SFR260204ST617407ABD",
-                courier: "Steadfast"
-                },
-                
-                {
-                
-                id: "DB-ORD-24003",
-                productId: 0,
-                customer: "Subrina Sumaya",
-                phone: "01645......441",
-                quantity: 1,
-                total: 970,
-                commission: 135,
-                date: "14 February, 2026",
-                status: "Delivered",
-                tracking: "SFR260214STC7C5B10BD",
-                courier: "Steadfast"
-                },
-                
-                
-                {
-                id: "DB-ORD-24004",
-                productId: 0,
-                customer: "Jihad Hasan",
-                phone: "01885****144",
-                quantity: 1,
-                total: 1150,
-                commission: 30,
-                date: "16 February, 2026",
-                status: "Shipping",
-                tracking: "SFR260217STADC8EFEBD",
-                courier: "Steadfast"
-                },
-                
-                {
-                id: "DB-ORD-24005",
-                productId: 0,
-                customer: "Mim Akter",
-                phone: "01863678533",
-                quantity: 1,
-                total: 770,
-                commission: 110,
-                date: "16 February, 2026",
-                status: "Shipping",
-                tracking: "SFR260221ST5AC4829BD",
-                courier: "Steadfast"
-                },
-                
-                {
-                id: "DB-ORD-24006",
-                productId: 0,
-                customer: "Abdul Alim",
-                phone: "01776792304",
-                quantity: 1,
-                total: 490,
-                commission: 80,
-                date: "23 February, 2026",
-                status: "Processing",
-                tracking: "000000",
-                courier: "Steadfast"
                 }
+                
+               
+                
+             
+                
+               
             ],
             
             withdrawals: [
@@ -1795,6 +1842,7 @@
             
             document.getElementById(pageId + "Page").classList.add("active");
             
+            // Find the corresponding tab and make it active
             document.querySelectorAll(".nav-tab").forEach(tab => {
                 if (tab.textContent.includes(getPageTitle(pageId))) {
                     tab.classList.add("active");
@@ -1868,9 +1916,8 @@
             // Clear existing rows
             recentOrdersBody.innerHTML = '';
             
-            // Add order rows (show only 5 recent orders)
-            const recentOrders = belayetData.orders.slice(0, 5);
-            recentOrders.forEach((order, index) => {
+            // Add order rows (show all orders)
+            belayetData.orders.forEach((order, index) => {
                 const product = belayetData.products.find(p => p.id === order.productId);
                 const row = document.createElement("tr");
                 row.innerHTML = `
@@ -1920,6 +1967,7 @@
                     },
                     options: {
                         responsive: true,
+                        maintainAspectRatio: true,
                         plugins: {
                             legend: {
                                 display: true
@@ -1959,6 +2007,7 @@
                     },
                     options: {
                         responsive: true,
+                        maintainAspectRatio: true,
                         plugins: {
                             legend: {
                                 position: 'bottom'
@@ -2096,12 +2145,12 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">${product.name}</h3>
-                        <p style="color: var(--gray); margin-bottom: 10px; font-size: 0.9rem; height: 40px; overflow: hidden;">${product.description}</p>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <p style="color: var(--gray); margin-bottom: 8px; font-size: 0.85rem; height: 40px; overflow: hidden;">${product.description}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                             <div class="product-price">${formatCurrency(product.price)}</div>
                             <div class="product-commission">${product.commission}% কমিশন</div>
                         </div>
-                        <div style="margin-bottom: 15px; display: flex; justify-content: space-between;">
+                        <div style="margin-bottom: 12px; display: flex; justify-content: space-between;">
                             <small>স্টক: ${product.stock} পিস</small>
                             <small>ক্যাটাগরি: ${product.category}</small>
                         </div>
